@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChasingEnemy : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    public float speed;
     private Transform player;
     private Rigidbody2D rb;
 

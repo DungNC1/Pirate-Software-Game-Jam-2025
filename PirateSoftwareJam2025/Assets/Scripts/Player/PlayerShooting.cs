@@ -7,7 +7,8 @@ public class PlayerShooting : MonoBehaviour
     private Vector3 mousePosition;
     private Camera mainCamera;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject bouncingBulletPrefab;  // New bouncing bullet prefab
+    [SerializeField] private GameObject bouncingBulletPrefab;
+    [SerializeField] private GameObject stunBulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     private bool canFire;
@@ -52,6 +53,10 @@ public class PlayerShooting : MonoBehaviour
                     case PlayerStats.BulletType.Bounce:
                         GameObject bouncingBullet = Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
                         bouncingBullet.GetComponent<BouncingBullet>().SetDirection(closestEnemy.transform.position);
+                        break;
+                    case PlayerStats.BulletType.Stun:
+                        GameObject stunBullet = Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                        stunBullet.GetComponent<StunBullet>().SetDirection(closestEnemy.transform.position);
                         break;
                 }
             }

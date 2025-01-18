@@ -2,21 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BouncingBullet : MonoBehaviour
+public class StunBullet : MonoBehaviour
 {
     [SerializeField] private float force;
-    [SerializeField] private int maxBounces = 5;
+    [SerializeField] private float lifetime = 5f;
     private Rigidbody2D rb;
-    private int bounceCount = 0;
-    private float lifetime = 5f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
-    private void Start()
-    {
-        Destroy(gameObject, lifetime);
     }
 
     public void SetDirection(Vector3 targetPosition)
@@ -25,20 +19,25 @@ public class BouncingBullet : MonoBehaviour
         rb.velocity = direction.normalized * force;
         float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, zRotation);
+        Invoke("Despawn", lifetime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        bounceCount++;
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            SlowEnemy slowEnemy = collision.gameObject.GetComponent<SlowEnemy>();
+            if (slowEnemy != null)
+            {
+                StartCoroutine(slowEnemy.SlowDown());
+            }
+        }
 
-        if (bounceCount >= maxBounces)
-        {
-            Destroy(gameObject);
-        }
-        
-        if(collision.gameObject.CompareTag("Enemy"))
-        {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
-        }
+        Despawn();
+    }
+
+    public void Despawn()
+    {
+        Destroy(gameObject);
     }
 }

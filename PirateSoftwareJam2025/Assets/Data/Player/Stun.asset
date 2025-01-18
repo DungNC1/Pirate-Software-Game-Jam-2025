@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e790719ae1686004a87f38ba1b8605b7, type: 3}
-  m_Name: Bounce
+  m_Name: Stun
   m_EditorClassIdentifier: 
   Speed: 5
   shootCooldown: 0.5
-  bulletType: 2
+  bulletType: 5

@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Regular
   m_EditorClassIdentifier: 
   Speed: 5
+  shootCooldown: 0.5
+  bulletType: 0
