@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6440011860822944578}
   - component: {fileID: 8511614775007686950}
   - component: {fileID: 4328817347216580042}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

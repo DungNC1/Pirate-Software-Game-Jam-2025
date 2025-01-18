@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerStats;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -12,54 +13,70 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     private bool canFire;
-    private float timer;
+    private float ShootTimer;
     private GameObject closestEnemy;
+    Dictionary<BulletType, int> Ammunitions = new Dictionary<BulletType, int>();
+    [SerializeField] int CurrentAmmo = 0;
+    [SerializeField] private bool canSpawnMinion = true;
+    [SerializeField] private float SpawnTimer;
+    [SerializeField] MinionBehaviour Minion;
 
     private void Awake()
     {
         mainCamera = Camera.main;
+        InitAmmunition();
     }
 
     private void Update()
     {
         FindClosestEnemyInView();
+        HandleCreateMinion();
 
-        if (closestEnemy != null)
+        if (closestEnemy == null)
+            return;
+
+        HandleRotation();
+        HandleFire();
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 direction = closestEnemy.transform.position - transform.position;
+        float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, zRotation);
+    }
+    private void HandleFire()
+    {
+        if (!canFire)
         {
-            Vector3 direction = closestEnemy.transform.position - transform.position;
-            float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, zRotation);
+            ShootTimer += Time.deltaTime;
 
-            if (!canFire)
+            if (ShootTimer > playerStats.shootCooldown)
             {
-                timer += Time.deltaTime;
-
-                if (timer > playerStats.shootCooldown)
-                {
-                    canFire = true;
-                    timer = 0;
-                }
+                canFire = true;
+                ShootTimer = 0;
             }
+            return;
+        }
 
-            if (canFire)
-            {
-                canFire = false;
-                switch(playerStats.bulletType) 
-                {
-                    case PlayerStats.BulletType.Regular:
-                        GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
-                        bullet.GetComponent<Bullet>().SetDirection(closestEnemy.transform.position);
-                        break;
-                    case PlayerStats.BulletType.Bounce:
-                        GameObject bouncingBullet = Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                        bouncingBullet.GetComponent<BouncingBullet>().SetDirection(closestEnemy.transform.position);
-                        break;
-                    case PlayerStats.BulletType.Stun:
-                        GameObject stunBullet = Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                        stunBullet.GetComponent<StunBullet>().SetDirection(closestEnemy.transform.position);
-                        break;
-                }
-            }
+        if (!CheckAndUseAmmo())
+            return;
+
+        canFire = false;
+        switch(playerStats.bulletType) 
+        {
+            case BulletType.Regular:
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
+                bullet.GetComponent<Bullet>().SetDirection(closestEnemy.transform.position);
+                break;
+            case BulletType.Bounce:
+                GameObject bouncingBullet = Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                bouncingBullet.GetComponent<BouncingBullet>().SetDirection(closestEnemy.transform.position);
+                break;
+            case PlayerStats.BulletType.Stun:
+                GameObject stunBullet = Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                stunBullet.GetComponent<StunBullet>().SetDirection(closestEnemy.transform.position);
+                break;
         }
     }
 
@@ -90,5 +107,54 @@ public class PlayerShooting : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, closestEnemy.transform.position);
         }
+    }
+
+    private bool CheckAndUseAmmo()
+    {
+        if (Ammunitions[playerStats.bulletType] > 0)
+        {
+            Ammunitions[playerStats.bulletType]--;
+            CurrentAmmo = Ammunitions[playerStats.bulletType];
+            return true;
+        }
+
+        return false;
+    }
+
+    void InitAmmunition()
+    {
+        Ammunitions.Add(BulletType.Regular, 10);
+        Ammunitions.Add(BulletType.Bounce, 10);
+        Ammunitions.Add(BulletType.Poison, 10);
+        Ammunitions.Add(BulletType.Explode, 10);
+        Ammunitions.Add(BulletType.Melee, 10);
+        Ammunitions.Add(BulletType.Stun, 10);
+
+        CurrentAmmo = Ammunitions[playerStats.bulletType];
+    }
+
+    private void HandleCreateMinion()
+    {
+        if (!canSpawnMinion)
+        {
+            SpawnTimer += Time.deltaTime;
+
+            if (SpawnTimer > playerStats.MinionCreationCooldown)
+            {
+                canSpawnMinion = true;
+                SpawnTimer = 0;
+            }
+            return;
+        }
+
+        if (!PlayerInputHandler.Instance.GetMinionInput)
+            return;
+
+        if (!CheckAndUseAmmo())
+            return;
+
+        canSpawnMinion = false;
+        MinionBehaviour SpawnedMinion = Instantiate(Minion, transform.position, Quaternion.identity);
+        SpawnedMinion.InitMinion(playerStats.bulletType, PlayerInputHandler.Instance.transform);
     }
 }

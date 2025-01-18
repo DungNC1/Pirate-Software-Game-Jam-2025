@@ -12,6 +12,9 @@ public sealed class PlayerInputHandler : MonoBehaviour
     Vector2 m_MoveInput = Vector2.zero;
     public Vector2 GetMoveInput { get { return m_MoveInput; } }
 
+    [SerializeField] bool m_MinionInput = false;
+    public bool GetMinionInput { get { return m_MinionInput; } }
+
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,16 +39,30 @@ public sealed class PlayerInputHandler : MonoBehaviour
     {
         playerInputAction.Player.Move.performed += SetMove;
         playerInputAction.Player.Move.canceled += SetMove;
+
+        playerInputAction.Player.CreateMinion.performed += SetMinionCreation;
+        playerInputAction.Player.CreateMinion.canceled += SetMinionCreation;
     }
 
     void UnbindInputs()
     {
         playerInputAction.Player.Move.performed -= SetMove;
         playerInputAction.Player.Move.canceled -= SetMove;
+
+        playerInputAction.Player.CreateMinion.performed -= SetMinionCreation;
+        playerInputAction.Player.CreateMinion.canceled -= SetMinionCreation;
     }
 
     private void SetMove(InputAction.CallbackContext context)
     {
         m_MoveInput = context.ReadValue<Vector2>();
+    }
+
+    private void SetMinionCreation(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            m_MinionInput = true;
+        else
+            m_MinionInput = false;
     }
 }
