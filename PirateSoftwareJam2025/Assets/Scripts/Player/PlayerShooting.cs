@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     private Vector3 mousePosition;
+    private Camera mainCamera;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject bouncingBulletPrefab;  // New bouncing bullet prefab
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     private bool canFire;
     private float timer;
     private GameObject closestEnemy;
-    private Camera mainCamera;
 
     private void Awake()
     {
@@ -42,9 +43,17 @@ public class PlayerShooting : MonoBehaviour
             if (canFire)
             {
                 canFire = false;
-                GameObject firedBullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
-                Bullet bulletComponent = firedBullet.GetComponent<Bullet>();
-                bulletComponent.SetDirection(closestEnemy.transform.position);
+                switch(playerStats.bulletType) 
+                {
+                    case PlayerStats.BulletType.Regular:
+                        GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
+                        bullet.GetComponent<Bullet>().SetDirection(closestEnemy.transform.position);
+                        break;
+                    case PlayerStats.BulletType.Bounce:
+                        GameObject bouncingBullet = Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                        bouncingBullet.GetComponent<BouncingBullet>().SetDirection(closestEnemy.transform.position);
+                        break;
+                }
             }
         }
     }
