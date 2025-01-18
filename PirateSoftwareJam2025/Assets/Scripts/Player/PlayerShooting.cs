@@ -124,11 +124,11 @@ public class PlayerShooting : MonoBehaviour
     void InitAmmunition()
     {
         Ammunitions.Add(BulletType.Regular, 10);
-        Ammunitions.Add(BulletType.Bounce, 10);
-        Ammunitions.Add(BulletType.Poison, 10);
-        Ammunitions.Add(BulletType.Explode, 10);
-        Ammunitions.Add(BulletType.Melee, 10);
-        Ammunitions.Add(BulletType.Stun, 10);
+        Ammunitions.Add(BulletType.Bounce, 0);
+        Ammunitions.Add(BulletType.Poison, 0);
+        Ammunitions.Add(BulletType.Explode, 0);
+        Ammunitions.Add(BulletType.Melee, 0);
+        Ammunitions.Add(BulletType.Stun, 0);
 
         CurrentAmmo = Ammunitions[playerStats.bulletType];
     }
