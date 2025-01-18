@@ -4,41 +4,60 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    private Camera mainCamera;
-    private Vector3 mousePosition;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private GameObject firePoint;
+    [SerializeField] private Transform firePoint;
     private bool canFire;
     private float timer;
-
-    private void Awake()
-    {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-    }
+    private GameObject closestEnemy;
 
     private void Update()
     {
-        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 rotation = mousePosition - transform.position;
-        float zRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, zRotation);
+        FindClosestEnemy();
 
-        if(!canFire)
+        if (closestEnemy != null)
         {
-            timer += Time.deltaTime;
+            Vector3 direction = closestEnemy.transform.position - transform.position;
+            float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, zRotation);
 
-            if(timer > playerStats.shootCooldown)
+            Debug.DrawLine(transform.position, closestEnemy.transform.position, Color.red);
+
+            if (!canFire)
             {
-                canFire = true;
-                timer = 0;
+                timer += Time.deltaTime;
+
+                if (timer > playerStats.shootCooldown)
+                {
+                    canFire = true;
+                    timer = 0;
+                }
+            }
+
+            if (canFire)
+            {
+                canFire = false;
+                GameObject firedBullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+                Bullet bulletComponent = firedBullet.GetComponent<Bullet>();
+                bulletComponent.SetDirection(closestEnemy.transform.position);
             }
         }
+    }
 
-        if(Input.GetMouseButtonDown(0))
+    private void FindClosestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float minDistance = Mathf.Infinity;
+
+        foreach (GameObject enemy in enemies)
         {
-            canFire = false;
-            Instantiate(bullet, firePoint.transform.position, Quaternion.identity);
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (distance < minDistance)
+            {
+                closestEnemy = enemy;
+                minDistance = distance;
+            }
         }
     }
 }
