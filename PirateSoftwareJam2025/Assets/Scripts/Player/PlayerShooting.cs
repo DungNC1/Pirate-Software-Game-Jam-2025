@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    private Vector3 mousePosition;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     private bool canFire;
     private float timer;
     private GameObject closestEnemy;
+    private Camera mainCamera;
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+    }
 
     private void Update()
     {
-        FindClosestEnemy();
+        FindClosestEnemyInView();
 
         if (closestEnemy != null)
         {
             Vector3 direction = closestEnemy.transform.position - transform.position;
             float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, zRotation);
-
-            Debug.DrawLine(transform.position, closestEnemy.transform.position, Color.red);
 
             if (!canFire)
             {
@@ -44,20 +49,32 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    private void FindClosestEnemy()
+    private void FindClosestEnemyInView()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float minDistance = Mathf.Infinity;
 
         foreach (GameObject enemy in enemies)
         {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-            if (distance < minDistance)
+            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(enemy.transform.position);
+            if (viewportPoint.x >= 0 && viewportPoint.x <= 1 && viewportPoint.y >= 0 && viewportPoint.y <= 1)
             {
-                closestEnemy = enemy;
-                minDistance = distance;
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distance < minDistance)
+                {
+                    closestEnemy = enemy;
+                    minDistance = distance;
+                }
             }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (mainCamera != null && closestEnemy != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, closestEnemy.transform.position);
         }
     }
 }
