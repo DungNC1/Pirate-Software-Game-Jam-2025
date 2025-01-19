@@ -1382,7 +1382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1710321574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,15 +1395,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f4046497b1b204a8b45bab407c85fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRadius: 20
+  initialSpawnRate: 4
+  spawnRateDecrease: 0.1
+  minimumSpawnRate: 0.5
+  difficultyIncreaseInterval: 15
   enemyPrefabs:
   - {fileID: 746388470983697196, guid: a68fc178629393e4eb5b3910a3ae20ba, type: 3}
   - {fileID: 746388470983697196, guid: 0e0181a5683823d4bbd8565ce6061a42, type: 3}
-  - {fileID: 746388470983697196, guid: 6b8a7166707823b40a911a9e029a9764, type: 3}
-  spawnRadius: 20
-  initialSpawnRate: 2
-  spawnRateDecrease: 0.1
-  minimumSpawnRate: 0.5
-  difficultyIncreaseInterval: 30
+  - {fileID: 4856186362457354908, guid: 68bd8f5327edec349b20a603e7faf6fe, type: 3}
+  easyEnemyIndex: 2
 --- !u!4 &1710321575
 Transform:
   m_ObjectHideFlags: 0
@@ -1952,6 +1953,10 @@ PrefabInstance:
       propertyPath: Minion
       value: 
       objectReference: {fileID: 8493572803005587068, guid: 331f8cd11c739534e82aae6885af364e, type: 3}
+    - target: {fileID: 6869628459145368676, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
+      propertyPath: CurrentAmmo
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 6869628459145368676, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
       propertyPath: playerStats
       value: 

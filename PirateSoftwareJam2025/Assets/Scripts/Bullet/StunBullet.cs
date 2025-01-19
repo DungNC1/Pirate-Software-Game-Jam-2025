@@ -27,6 +27,8 @@ public class StunBullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             SlowEnemy slowEnemy = collision.gameObject.GetComponent<SlowEnemy>();
+            collision.gameObject.GetComponent<IDamagable>().TakeDamage(1);
+
             if (slowEnemy != null)
             {
                 StartCoroutine(slowEnemy.SlowDown());

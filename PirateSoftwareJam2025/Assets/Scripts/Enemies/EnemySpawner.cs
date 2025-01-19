@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemyPrefabs;  // Different types of enemies
+    [Header("Spawning Enemies")]
     [SerializeField] private float spawnRadius = 10f;
-    [SerializeField] private float initialSpawnRate = 2f;
+    [SerializeField] private float initialSpawnRate = 4f;
     [SerializeField] private float spawnRateDecrease = 0.1f;
     [SerializeField] private float minimumSpawnRate = 0.5f;
-    [SerializeField] private float difficultyIncreaseInterval = 30f;  // Time interval to increase difficulty
+    [SerializeField] private float difficultyIncreaseInterval = 15f;
     private float spawnRate;
     private float nextSpawnTime;
     private float difficultyTimer;
     private List<int> spawnWeights;
+
+    [Header("Enemies")]
+    [SerializeField] private GameObject[] enemyPrefabs; 
+    [SerializeField] private int easyEnemyIndex = 2;
 
     private void Start()
     {
@@ -21,7 +25,6 @@ public class EnemySpawner : MonoBehaviour
         nextSpawnTime = Time.time + spawnRate;
         difficultyTimer = Time.time + difficultyIncreaseInterval;
 
-        // Initialize spawn weights
         spawnWeights = new List<int>();
         foreach (var enemy in enemyPrefabs)
         {
@@ -47,9 +50,28 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Vector3 spawnPosition = Random.insideUnitCircle * spawnRadius;
         int selectedIndex = SelectEnemyIndex();
-        Instantiate(enemyPrefabs[selectedIndex], spawnPosition, Quaternion.identity);
+
+        if (selectedIndex == easyEnemyIndex)
+        {
+            int herdSize = Random.Range(2, 5);
+            for (int i = 0; i < herdSize; i++)
+            {
+                Vector3 spawnPosition = GenerateRandomPositionWithinRadius();
+                Instantiate(enemyPrefabs[selectedIndex], spawnPosition, Quaternion.identity);
+            }
+        }
+        else
+        {
+            Vector3 spawnPosition = GenerateRandomPositionWithinRadius();
+            Instantiate(enemyPrefabs[selectedIndex], spawnPosition, Quaternion.identity);
+        }
+    }
+
+    private Vector3 GenerateRandomPositionWithinRadius()
+    {
+        Vector2 randomPoint = Random.insideUnitCircle * spawnRadius;
+        return new Vector3(randomPoint.x, randomPoint.y, 0) + transform.position;
     }
 
     private int SelectEnemyIndex()
@@ -72,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        return spawnWeights.Count - 1; 
+        return spawnWeights.Count - 1;
     }
 
     private void AdjustDifficulty()
@@ -102,6 +124,6 @@ public class EnemySpawner : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, spawnRadius);  // Drawing spawn radius
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
 }

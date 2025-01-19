@@ -83,7 +83,7 @@ public class PlayerShooting : MonoBehaviour
                 GameObject bouncingBullet = Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 bouncingBullet.GetComponent<BouncingBullet>().SetDirection(closestEnemy.transform.position);
                 break;
-            case PlayerStats.BulletType.Stun:
+            case BulletType.Stun:
                 GameObject stunBullet = Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 stunBullet.GetComponent<StunBullet>().SetDirection(closestEnemy.transform.position);
                 break;

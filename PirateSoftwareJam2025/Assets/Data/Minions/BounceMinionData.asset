@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: BounceMinionData
   m_EditorClassIdentifier: Assembly-CSharp::BounceMinionData
-  health: 1
+  health: 3

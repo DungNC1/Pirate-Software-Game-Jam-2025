@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: StunMinionData
   m_EditorClassIdentifier: Assembly-CSharp::StunMinionData
-  health: 1
+  health: 3

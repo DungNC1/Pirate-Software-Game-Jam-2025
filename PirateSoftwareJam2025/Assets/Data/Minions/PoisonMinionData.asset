@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: PoisonMinionData
   m_EditorClassIdentifier: Assembly-CSharp::PoisonMinionData
-  health: 1
+  health: 3
