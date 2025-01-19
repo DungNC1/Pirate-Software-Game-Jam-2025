@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SlowEnemy : MonoBehaviour
 {
-    public enum EnemyType { ChasingEnemy, Type2 }
+    public enum EnemyType { ChasingEnemy, Wheezlin }
     public EnemyType enemyType;
     public float slowDownFactor = 0.5f;
-    public float slowDownDuration = 2f;
+    public float slowDownDuration = 3f;
 
     public IEnumerator SlowDown()
     {
@@ -24,16 +24,16 @@ public class SlowEnemy : MonoBehaviour
                 }
                 break;
 
-            /*case EnemyType.Type2:
-                EnemyMovementType2 movementType2 = GetComponent<EnemyMovementType2>();
-                if (movementType2 != null)
+            case EnemyType.Wheezlin:
+                Wheezlin wheezlin = GetComponent<Wheezlin>();
+                if (wheezlin != null)
                 {
-                    float originalSpeed = movementType2.speed;
-                    movementType2.speed *= slowDownFactor;
+                    float originalSpeed = wheezlin.speed;
+                    wheezlin.speed *= slowDownFactor;
                     yield return new WaitForSeconds(slowDownDuration);
-                    movementType2.speed = originalSpeed;
+                    wheezlin.speed = originalSpeed;
                 }
-                break;*/
+                break;
         }
     }
 }
