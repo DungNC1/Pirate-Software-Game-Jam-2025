@@ -8,7 +8,7 @@ public class Tomache : MonoBehaviour
     [SerializeField] private float chaseSpeed = 6f;
     [SerializeField] private float detectionRange = 5f;
     [SerializeField] private float attackRange = 1f;
-    [SerializeField] private int damage = 2;
+    [SerializeField] private int damage = 3;
     [SerializeField] private float attackCooldown = 2f;
     public float currentSpeed;
     private Transform target;

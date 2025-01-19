@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 2406357316837006445}
   - component: {fileID: 263234213120530817}
   - component: {fileID: 6637637382628307291}
-  - component: {fileID: 784019387973231846}
-  - component: {fileID: 1138782085779320418}
+  - component: {fileID: 8103999093187923327}
+  - component: {fileID: -514527917171558837}
   m_Layer: 0
-  m_Name: Wheezlin
+  m_Name: Charvader
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.9831495, a: 1}
+  m_Color: {r: 1, g: 0.9231248, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616c1e66fe47f9f45beaef1d089de8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 7
 --- !u!61 &263234213120530817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,7 +174,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &784019387973231846
+--- !u!114 &8103999093187923327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,11 +186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21e359b899f6464ebe2eebd0f59460f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 1
+  enemyType: 3
   slowDownFactor: 0.5
   slowDownDuration: 2
   isSlowed: 0
---- !u!114 &1138782085779320418
+--- !u!114 &-514527917171558837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,10 +199,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 746388470983697196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e0d3fcd4acded49a2ed071a8c9008f, type: 3}
+  m_Script: {fileID: 11500000, guid: 03d926673e6512a4a8d8c9179f759a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  chargeSpeed: 13
+  detectionRange: 7
   attackRange: 1
   damage: 2
-  attackCooldown: 1.5
+  chargeCooldown: 3

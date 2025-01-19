@@ -177,8 +177,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5817108640050918912, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
   bouncingBulletPrefab: {fileID: 2925804891647512289, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
-  playerStats: {fileID: 11400000, guid: e4b46a9a46cacaa41b355a5390af233c, type: 2}
+  stunBulletPrefab: {fileID: 2227435098529890531, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
+  playerStats: {fileID: 11400000, guid: b555f508bc7ffaf458224881feb60445, type: 2}
   firePoint: {fileID: 5635808925731107533}
+  CurrentAmmo: 100
+  canSpawnMinion: 1
+  SpawnTimer: 0
+  Minion: {fileID: 8493572803005587068, guid: 331f8cd11c739534e82aae6885af364e, type: 3}
 --- !u!1 &1558698485950650302
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +281,7 @@ GameObject:
   - component: {fileID: 2707105440954480531}
   - component: {fileID: 1320434532546354713}
   - component: {fileID: 4534658915042603469}
+  - component: {fileID: 5990022612429654993}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -329,6 +335,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 92f2c199-6cf4-4cbc-a557-fd0ecf72125d
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f98be99b-2e62-48fb-950e-08052579970d
+    m_ActionName: Player/CreateMinion[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fac4200b-49ce-4ad4-86ec-52e08b3b4a6e
+    m_ActionName: Player/AmmoChange[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -346,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afc3caa591181a48be9a84de29bba0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AmmoChangeInput: 0
 --- !u!114 &1320434532546354713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,3 +401,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5990022612429654993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3069619169956562714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1724a806c3d927a49966c946d9a4e38f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
