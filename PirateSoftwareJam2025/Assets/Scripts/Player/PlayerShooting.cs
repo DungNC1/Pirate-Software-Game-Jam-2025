@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static PlayerStats;
 
@@ -16,7 +18,9 @@ public class PlayerShooting : MonoBehaviour
     private float ShootTimer;
     private GameObject closestEnemy;
     Dictionary<BulletType, int> Ammunitions = new Dictionary<BulletType, int>();
+    List<BulletType> bulletTypesCycleTracker = new List<BulletType>();
     [SerializeField] int CurrentAmmo = 0;
+    int currentAmmoIndex = 0;
     [SerializeField] private bool canSpawnMinion = true;
     [SerializeField] private float SpawnTimer;
     [SerializeField] MinionBehaviour Minion;
@@ -24,6 +28,12 @@ public class PlayerShooting : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
+    }
+
+    private void Start()
+    {
+        PlayerInputHandler.Instance.GetScrollDownEvent.AddListener(ChangeAmmo);
+        PlayerInputHandler.Instance.GetScrollUpEvent.AddListener(ChangeAmmo);
         InitAmmunition();
     }
 
@@ -124,13 +134,22 @@ public class PlayerShooting : MonoBehaviour
     void InitAmmunition()
     {
         Ammunitions.Add(BulletType.Regular, 10);
-        Ammunitions.Add(BulletType.Bounce, 0);
-        Ammunitions.Add(BulletType.Poison, 0);
-        Ammunitions.Add(BulletType.Explode, 0);
-        Ammunitions.Add(BulletType.Melee, 0);
-        Ammunitions.Add(BulletType.Stun, 0);
+        Ammunitions.Add(BulletType.Bounce, 10);
+        Ammunitions.Add(BulletType.Poison, 10);
+        Ammunitions.Add(BulletType.Explode, 10);
+        Ammunitions.Add(BulletType.Melee, 10);
+        Ammunitions.Add(BulletType.Stun, 10);
 
-        CurrentAmmo = Ammunitions[playerStats.bulletType];
+        bulletTypesCycleTracker.Add(BulletType.Regular);
+        bulletTypesCycleTracker.Add(BulletType.Bounce);
+        bulletTypesCycleTracker.Add(BulletType.Poison);
+        bulletTypesCycleTracker.Add(BulletType.Explode);
+        bulletTypesCycleTracker.Add(BulletType.Melee);
+        bulletTypesCycleTracker.Add(BulletType.Stun);
+
+
+        CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
+        AmmoSelectorUI.Instance.SetSelector(currentAmmoIndex);
     }
 
     private void HandleCreateMinion()
@@ -156,5 +175,20 @@ public class PlayerShooting : MonoBehaviour
         canSpawnMinion = false;
         MinionBehaviour SpawnedMinion = Instantiate(Minion, transform.position, Quaternion.identity);
         SpawnedMinion.InitMinion(playerStats.bulletType, PlayerInputHandler.Instance.transform);
+    }
+
+    void ChangeAmmo(int change)
+    {
+        currentAmmoIndex += change;
+
+        if(currentAmmoIndex < 0)
+            currentAmmoIndex = bulletTypesCycleTracker.Count - 1;
+        if (currentAmmoIndex == bulletTypesCycleTracker.Count)
+            currentAmmoIndex = 0;
+
+        playerStats.bulletType = bulletTypesCycleTracker[currentAmmoIndex];
+        CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
+
+        AmmoSelectorUI.Instance.SetSelector(currentAmmoIndex);
     }
 }

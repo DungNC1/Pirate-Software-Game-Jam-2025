@@ -44,6 +44,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AmmoChange"",
+                    ""type"": ""Value"",
+                    ""id"": ""fac4200b-49ce-4ad4-86ec-52e08b3b4a6e"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""CreateMinion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""067c94e2-305b-4782-b719-2c0b3480dbed"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AmmoChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +142,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_CreateMinion = m_Player.FindAction("CreateMinion", throwIfNotFound: true);
+        m_Player_AmmoChange = m_Player.FindAction("AmmoChange", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +206,14 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_CreateMinion;
+    private readonly InputAction m_Player_AmmoChange;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @CreateMinion => m_Wrapper.m_Player_CreateMinion;
+        public InputAction @AmmoChange => m_Wrapper.m_Player_AmmoChange;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +229,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @CreateMinion.started += instance.OnCreateMinion;
             @CreateMinion.performed += instance.OnCreateMinion;
             @CreateMinion.canceled += instance.OnCreateMinion;
+            @AmmoChange.started += instance.OnAmmoChange;
+            @AmmoChange.performed += instance.OnAmmoChange;
+            @AmmoChange.canceled += instance.OnAmmoChange;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -216,6 +242,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @CreateMinion.started -= instance.OnCreateMinion;
             @CreateMinion.performed -= instance.OnCreateMinion;
             @CreateMinion.canceled -= instance.OnCreateMinion;
+            @AmmoChange.started -= instance.OnAmmoChange;
+            @AmmoChange.performed -= instance.OnAmmoChange;
+            @AmmoChange.canceled -= instance.OnAmmoChange;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -237,5 +266,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnCreateMinion(InputAction.CallbackContext context);
+        void OnAmmoChange(InputAction.CallbackContext context);
     }
 }
