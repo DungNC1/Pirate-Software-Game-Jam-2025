@@ -8,7 +8,7 @@ public class Wheezlin : MonoBehaviour
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private int damage = 2;
     [SerializeField] private float attackCooldown = 1.5f;
-    private Transform player;
+    private Transform closestClone;
     private Rigidbody2D rb;
     private bool canAttack = true;
     private float attackTimer;
@@ -20,18 +20,22 @@ public class Wheezlin : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        FindClosestClone();
     }
 
     private void Update()
     {
-        if (player != null)
+        if (closestClone != null)
         {
-            MoveTowardsPlayer();
-            if (Vector2.Distance(transform.position, player.position) <= attackRange && canAttack)
+            MoveTowardsClone();
+            if (Vector2.Distance(transform.position, closestClone.position) <= attackRange && canAttack)
             {
-                AttackPlayer();
+                AttackClone();
             }
+        }
+        else
+        {
+            FindClosestClone();
         }
 
         if (!canAttack)
@@ -45,19 +49,39 @@ public class Wheezlin : MonoBehaviour
         }
     }
 
-    private void MoveTowardsPlayer()
+    private void FindClosestClone()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
+        GameObject[] clones = GameObject.FindGameObjectsWithTag("Player");
+        float closestDistance = Mathf.Infinity;
+        Transform closestTarget = null;
+
+        foreach (GameObject clone in clones)
+        {
+            float distanceToClone = Vector2.Distance(transform.position, clone.transform.position);
+            if (distanceToClone < closestDistance)
+            {
+                closestDistance = distanceToClone;
+                closestTarget = clone.transform;
+            }
+        }
+
+        closestClone = closestTarget;
+    }
+
+    private void MoveTowardsClone()
+    {
+        Vector2 direction = (closestClone.position - transform.position).normalized;
         rb.velocity = direction * speed;
     }
 
-    private void AttackPlayer()
+    private void AttackClone()
     {
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        PlayerHealth playerHealth = closestClone.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(damage);
             canAttack = false;
         }
     }
+
 }

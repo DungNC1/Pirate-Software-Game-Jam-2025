@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8183128458588288423}
   - component: {fileID: 2406357316837006445}
   - component: {fileID: 263234213120530817}
-  - component: {fileID: 5504019738500550943}
   - component: {fileID: 6637637382628307291}
   - component: {fileID: 8103999093187923327}
+  - component: {fileID: -2616604861858210203}
   m_Layer: 0
-  m_Name: HardEnemy
+  m_Name: Tomache
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616c1e66fe47f9f45beaef1d089de8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 10
 --- !u!61 &263234213120530817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,19 +147,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5504019738500550943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746388470983697196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff97c8a3a422b2418c5cb95214d4435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
 --- !u!50 &6637637382628307291
 Rigidbody2D:
   serializedVersion: 4
@@ -175,7 +162,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 9
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -199,6 +186,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21e359b899f6464ebe2eebd0f59460f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
+  enemyType: 2
   slowDownFactor: 0.5
   slowDownDuration: 2
+--- !u!114 &-2616604861858210203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746388470983697196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb145c4b724ca50488dec394ecb8d90f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialSpeed: 3
+  chaseSpeed: 7
+  detectionRange: 5
+  attackRange: 1
+  damage: 2
+  attackCooldown: 2
+  currentSpeed: 0
