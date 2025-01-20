@@ -14,6 +14,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject stunBulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
+    [HideInInspector] public float shootCooldown;
     private bool canFire;
     private float ShootTimer;
     private GameObject closestEnemy;
@@ -35,6 +36,7 @@ public class PlayerShooting : MonoBehaviour
         PlayerInputHandler.Instance.GetScrollDownEvent.AddListener(ChangeAmmo);
         PlayerInputHandler.Instance.GetScrollUpEvent.AddListener(ChangeAmmo);
         InitAmmunition();
+        shootCooldown = playerStats.shootCooldown;
     }
 
     private void Update()
@@ -61,7 +63,7 @@ public class PlayerShooting : MonoBehaviour
         {
             ShootTimer += Time.deltaTime;
 
-            if (ShootTimer > playerStats.shootCooldown)
+            if (ShootTimer > shootCooldown)
             {
                 canFire = true;
                 ShootTimer = 0;

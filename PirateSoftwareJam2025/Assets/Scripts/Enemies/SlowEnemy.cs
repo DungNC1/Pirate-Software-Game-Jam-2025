@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlowEnemy : MonoBehaviour
 {
-    public enum EnemyType { ChasingEnemy, Wheezlin, Tomache, Charvader }
+    public enum EnemyType { ChasingEnemy, Wheezlin, Tomache, Charvader, Phlennon }
     public EnemyType enemyType;
     public float slowDownFactor = 0.5f;
     public float slowDownDuration = 3f;
@@ -61,6 +61,18 @@ public class SlowEnemy : MonoBehaviour
                     yield return new WaitForSeconds(slowDownDuration);
                     isSlowed = false;
                     charvader.speed = originalSpeed;
+                }
+                break;
+            case EnemyType.Phlennon:
+                Phlennon phlennon = GetComponent<Phlennon>();
+                if (phlennon != null && !isSlowed)
+                {
+                    isSlowed = true;
+                    float originalSpeed = phlennon.speed;
+                    phlennon.speed *= slowDownFactor;
+                    yield return new WaitForSeconds(slowDownDuration);
+                    isSlowed = false;
+                    phlennon.speed = originalSpeed;
                 }
                 break;
         }
