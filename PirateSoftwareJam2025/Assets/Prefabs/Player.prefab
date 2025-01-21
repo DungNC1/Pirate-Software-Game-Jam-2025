@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5905781972209947698}
   - component: {fileID: 5619649384457646432}
   - component: {fileID: 5762824398191349924}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6507769090325935388}
   - component: {fileID: 6869628459145368676}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,8 +178,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5817108640050918912, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
   bouncingBulletPrefab: {fileID: 2925804891647512289, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
   stunBulletPrefab: {fileID: 2227435098529890531, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
-  playerStats: {fileID: 11400000, guid: b555f508bc7ffaf458224881feb60445, type: 2}
+  playerStats: {fileID: 11400000, guid: e4b46a9a46cacaa41b355a5390af233c, type: 2}
   firePoint: {fileID: 5635808925731107533}
+  shootCooldown: 0
   CurrentAmmo: 100
   canSpawnMinion: 1
   SpawnTimer: 0
@@ -194,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5635808925731107533}
   - component: {fileID: 3023429719711824168}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +283,7 @@ GameObject:
   - component: {fileID: 1320434532546354713}
   - component: {fileID: 4534658915042603469}
   - component: {fileID: 5990022612429654993}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -304,6 +305,7 @@ Transform:
   m_Children:
   - {fileID: 5905781972209947698}
   - {fileID: 6507769090325935388}
+  - {fileID: 3192036857348962856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8094227844867159312
@@ -374,6 +376,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 11400000, guid: e4b46a9a46cacaa41b355a5390af233c, type: 2}
+  speed: 0
+  isSlowed: 0
 --- !u!50 &4534658915042603469
 Rigidbody2D:
   serializedVersion: 4
@@ -414,3 +418,124 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
+  currentHealth: 0
+--- !u!1 &3755463022603724420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3192036857348962856}
+  - component: {fileID: 6073770686475984521}
+  - component: {fileID: 1851885735962389799}
+  - component: {fileID: 7392737126754336243}
+  m_Layer: 0
+  m_Name: AmmoCollector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3192036857348962856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755463022603724420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2324053810428682917}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6073770686475984521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755463022603724420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c4ed3e7f040164696d558cefae07b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollectRadius: 5
+  m_AttractionForce: 1
+  AttractedBullets: []
+  m_PlayerShooting: {fileID: 6869628459145368676}
+--- !u!58 &1851885735962389799
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755463022603724420}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!58 &7392737126754336243
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755463022603724420}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1

@@ -2002,10 +2002,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6869628459145368676, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
-      propertyPath: playerStats
-      value: 
-      objectReference: {fileID: 11400000, guid: e4b46a9a46cacaa41b355a5390af233c, type: 2}
+    - target: {fileID: 6073770686475984521, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
+      propertyPath: m_CollectRadius
+      value: 999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

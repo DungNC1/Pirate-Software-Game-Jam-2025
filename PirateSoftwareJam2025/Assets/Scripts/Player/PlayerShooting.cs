@@ -133,6 +133,11 @@ public class PlayerShooting : MonoBehaviour
         return false;
     }
 
+    public void AddAmmo(BulletType type, int ammount)
+    {
+        Ammunitions[type] += ammount;
+    }
+
     void InitAmmunition()
     {
         Ammunitions.Add(BulletType.Regular, 10);
