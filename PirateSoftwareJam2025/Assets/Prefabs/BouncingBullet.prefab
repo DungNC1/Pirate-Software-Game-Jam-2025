@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761fd85655d479b478c57003492f76bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletType: 2
   force: 10
   maxBounces: 5
 --- !u!50 &5205337185735403486
