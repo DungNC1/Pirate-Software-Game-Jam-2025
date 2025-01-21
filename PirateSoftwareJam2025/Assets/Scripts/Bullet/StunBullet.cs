@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StunBullet : MonoBehaviour
+public class StunBullet : AbstractBullet
 {
     [SerializeField] private float force;
     [SerializeField] private float lifetime = 5f;
-    private Rigidbody2D rb;
 
-    private void Awake()
+    public override void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
+        Invoke("SetInactive", lifetime);
     }
 
     public void SetDirection(Vector3 targetPosition)
@@ -19,7 +19,6 @@ public class StunBullet : MonoBehaviour
         rb.velocity = direction.normalized * force;
         float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, zRotation);
-        Invoke("Despawn", lifetime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,11 +34,6 @@ public class StunBullet : MonoBehaviour
             }
         }
 
-        Despawn();
-    }
-
-    public void Despawn()
-    {
-        Destroy(gameObject);
+        SetInactive();
     }
 }

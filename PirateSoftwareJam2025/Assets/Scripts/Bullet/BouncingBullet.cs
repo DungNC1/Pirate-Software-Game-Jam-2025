@@ -2,21 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BouncingBullet : MonoBehaviour
+public class BouncingBullet : AbstractBullet
 {
     [SerializeField] private float force;
     [SerializeField] private int maxBounces = 5;
-    private Rigidbody2D rb;
     private int bounceCount = 0;
     private float lifetime = 5f;
 
-    private void Awake()
+    public override void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
-    private void Start()
-    {
-        Destroy(gameObject, lifetime);
+        base.Awake();
+        Invoke("SetInactive", lifetime);
     }
 
     public void SetDirection(Vector3 targetPosition)
@@ -33,7 +29,7 @@ public class BouncingBullet : MonoBehaviour
 
         if (bounceCount >= maxBounces)
         {
-            Destroy(gameObject);
+            SetInactive();
         }
         
         if(collision.gameObject.CompareTag("Enemy"))

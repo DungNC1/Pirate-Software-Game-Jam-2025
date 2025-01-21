@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : AbstractBullet
 {
     [SerializeField] private float force;
-    private Rigidbody2D rb;
 
-    private void Awake()
+    public override void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        Invoke("DestroySelf", 3);
+        base.Awake();
+        Invoke("SetInactive", 3);
     }
 
     public void SetDirection(Vector3 targetPosition)
@@ -28,11 +27,6 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<IDamagable>().TakeDamage(1);
         }
 
-        DestroySelf();
-    }
-
-    private void DestroySelf()
-    {
-        Destroy(gameObject);
+        SetInactive();
     }
 }
