@@ -1,3 +1,6 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Shoes", menuName = "ScriptableObjects/UpgradeData/Shoes")]
 public class Shoes : Upgrade
 {
     public float SpeedBuff = 1;

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "BiteBlack", menuName = "ScriptableObjects/UpgradeData/BiteBlack")]
 public class BiteBlack : Upgrade
 {
     public float Range = 1;

@@ -1,3 +1,6 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Love", menuName = "ScriptableObjects/UpgradeData/Love")]
 public class Love : Upgrade
 {
     public int HealthBuff;
