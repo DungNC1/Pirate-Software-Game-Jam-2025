@@ -15,6 +15,11 @@ public class AmmoCollector : MonoBehaviour
         TryGetComponent(out m_CircleCollider);
     }
 
+    public void SetInfiniteRadius()
+    {
+        m_InfiniteRadius = true;
+    }
+
     private void Update()
     {
         UpdateColliderParameters();

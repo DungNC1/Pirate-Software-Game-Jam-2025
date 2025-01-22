@@ -185,6 +185,7 @@ MonoBehaviour:
   canSpawnMinion: 1
   SpawnTimer: 0
   Minion: {fileID: 8493572803005587068, guid: 331f8cd11c739534e82aae6885af364e, type: 3}
+  MaxMinion: 2
 --- !u!1 &1558698485950650302
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +284,7 @@ GameObject:
   - component: {fileID: 1320434532546354713}
   - component: {fileID: 4534658915042603469}
   - component: {fileID: 5990022612429654993}
+  - component: {fileID: 8777710299222376743}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -417,8 +419,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1724a806c3d927a49966c946d9a4e38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  MaxHealth: 0
   currentHealth: 0
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8777710299222376743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3069619169956562714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6a5b70fa12ccb448c8fe277df09490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XPRequiredPerLevel:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 10
+      inSlope: 1.6777743
+      outSlope: 1.6777743
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.035662405
+    - serializedVersion: 3
+      time: 100
+      value: 1000.6853
+      inSlope: 20.27334
+      outSlope: 20.27334
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.02376957
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  currentXP: 0
+  currentLevel: 1
+  XPToNextLevel: 0
+  LevelGained:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3755463022603724420
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c4ed3e7f040164696d558cefae07b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CollectRadius: 5
+  m_CollectRadius: 999
   m_AttractionForce: 1
   AttractedBullets: []
   m_PlayerShooting: {fileID: 6869628459145368676}

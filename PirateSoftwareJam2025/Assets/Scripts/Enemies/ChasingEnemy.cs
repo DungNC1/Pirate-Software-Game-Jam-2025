@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ChasingEnemy : MonoBehaviour
+public class ChasingEnemy : AbstractEnnemy
 {
-    public float speed;
     private Transform player;
     private Rigidbody2D rb;
 

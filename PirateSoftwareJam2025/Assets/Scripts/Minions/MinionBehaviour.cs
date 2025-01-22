@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static PlayerStats;
 
 public class MinionBehaviour : MonoBehaviour, IDamagable
@@ -23,6 +24,8 @@ public class MinionBehaviour : MonoBehaviour, IDamagable
     [SerializeField] MinionData m_ExplodeMinionData;
     [SerializeField] MinionData m_MeleeMinionData;
     [SerializeField] MinionData m_StunMinionData;
+
+    public UnityEvent<MinionBehaviour> MinionDie = new UnityEvent<MinionBehaviour>();
 
     private void Awake()
     {
@@ -78,5 +81,10 @@ public class MinionBehaviour : MonoBehaviour, IDamagable
     public void TakeDamage(int damage)
     {
         
+    }
+
+    private void OnDestroy()
+    {
+        MinionDie.Invoke(this);
     }
 }

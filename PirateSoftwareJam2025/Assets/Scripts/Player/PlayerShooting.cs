@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using static PlayerStats;
 
 public class PlayerShooting : MonoBehaviour
@@ -25,7 +26,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private bool canSpawnMinion = true;
     [SerializeField] private float SpawnTimer;
     [SerializeField] MinionBehaviour Minion;
-
+    List<MinionBehaviour> MinionBehaviours = new List<MinionBehaviour>();
+    [SerializeField] private int MaxMinion = 2;
+    private bool LockMinionNumber = false;
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -176,12 +179,17 @@ public class PlayerShooting : MonoBehaviour
         if (!PlayerInputHandler.Instance.GetMinionInput)
             return;
 
+        if (MinionBehaviours.Count >= MaxMinion)
+            return;
+
         if (!CheckAndUseAmmo())
             return;
 
         canSpawnMinion = false;
         MinionBehaviour SpawnedMinion = Instantiate(Minion, transform.position, Quaternion.identity);
         SpawnedMinion.InitMinion(playerStats.bulletType, PlayerInputHandler.Instance.transform);
+        MinionBehaviours.Add(SpawnedMinion);
+        SpawnedMinion.MinionDie.AddListener(RemoveMinion);
     }
 
     void ChangeAmmo(int change)
@@ -197,5 +205,27 @@ public class PlayerShooting : MonoBehaviour
         CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
 
         AmmoSelectorUI.Instance.SetSelector(currentAmmoIndex);
+    }
+
+    void RemoveMinion(MinionBehaviour Minion)
+    {
+        MinionBehaviours.Remove(Minion);
+    }
+
+    public void AddMinionLimit(int amount)
+    {
+        if (LockMinionNumber)
+            return;
+        MaxMinion += amount;
+    }
+
+    public void SetLockMinionNumber()
+    {
+        LockMinionNumber = true;
+        MaxMinion = 1;
+        for(int i = 0; i < MinionBehaviours.Count -1;i++)
+        {
+            Destroy(MinionBehaviours[0].gameObject);
+        }
     }
 }

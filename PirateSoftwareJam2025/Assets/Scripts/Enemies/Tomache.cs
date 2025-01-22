@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tomache : MonoBehaviour
+public class Tomache : AbstractEnnemy
 {
     [SerializeField] private float initialSpeed = 3f;
     [SerializeField] private float chaseSpeed = 6f;

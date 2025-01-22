@@ -942,7 +942,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1433,6 +1433,10 @@ PrefabInstance:
     - target: {fileID: 4856186362457354908, guid: fd898325df60ac54f9251e50b570946b, type: 3}
       propertyPath: m_Name
       value: Deathrus
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746269641924021994, guid: fd898325df60ac54f9251e50b570946b, type: 3}
+      propertyPath: xpValue
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2085,10 +2089,6 @@ PrefabInstance:
     - target: {fileID: 3069619169956562714, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073770686475984521, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
-      propertyPath: m_CollectRadius
-      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

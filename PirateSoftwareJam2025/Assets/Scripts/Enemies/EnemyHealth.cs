@@ -6,6 +6,12 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 {
     [SerializeField] private int health;
     private int currentHealth;
+    AbstractEnnemy MainScriptRef;
+
+    private void Awake()
+    {
+        TryGetComponent(out MainScriptRef);
+    }
 
     private void Start()
     {
@@ -18,6 +24,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
         if(currentHealth <= 0)
         {
+            MainScriptRef.Die();
             Destroy(gameObject);
         }
     }

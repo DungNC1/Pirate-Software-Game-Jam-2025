@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Deathurus : MonoBehaviour
+public class Deathurus : AbstractEnnemy
 {
-    public float speed = 1f;
     [SerializeField] private int damage = 10;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float attackCooldown = 3f;

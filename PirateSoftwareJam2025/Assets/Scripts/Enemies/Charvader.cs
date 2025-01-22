@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Charvader : MonoBehaviour
+public class Charvader : AbstractEnnemy
 {
-    public float speed = 5f;
     [SerializeField] private float chargeSpeed = 10f;
     [SerializeField] private float detectionRange = 7f;
     [SerializeField] private int damage = 100;

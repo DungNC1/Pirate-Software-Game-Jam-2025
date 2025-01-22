@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wheezlin : MonoBehaviour
+public class Wheezlin : AbstractEnnemy
 {
-    public float speed = 5f;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private int damage = 2;
     [SerializeField] private float attackCooldown = 1.5f;

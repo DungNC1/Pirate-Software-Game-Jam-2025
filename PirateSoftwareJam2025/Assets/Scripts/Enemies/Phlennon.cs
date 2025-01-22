@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Phlennon : MonoBehaviour
+public class Phlennon : AbstractEnnemy
 {
-    public float speed = 3f;
     [SerializeField] private float shootRange = 6f;
     [SerializeField] private float retreatRange = 3f;
     [SerializeField] private int phlegmDamage = 20;
