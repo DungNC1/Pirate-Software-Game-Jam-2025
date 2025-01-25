@@ -4,27 +4,31 @@ using UnityEngine;
 public class UpgradeMenu : MonoBehaviour
 {
     [SerializeField] List<Upgrade> m_UpgradeList;
-    UpgradeUI[] m_UpgradeUIArray =  new UpgradeUI[4];
+    [SerializeField] List<Upgrade> m_UpgradeSelected = new List<Upgrade>();
+    [SerializeField] UpgradeUI[] m_UpgradeUIArray =  new UpgradeUI[4];
     Transform Container;
+
+    private void Awake()
+    {
+        Container = transform.GetChild(0);
+        m_UpgradeUIArray = GetComponentsInChildren<UpgradeUI>(true);
+    }
 
     private void Start()
     {
-        Container = transform.GetChild(0);
-        m_UpgradeUIArray = GetComponentsInChildren<UpgradeUI>();
-        DisplayChoice();
+        PlayerXP.instance.LevelGained.AddListener(DisplayChoice);
     }
 
     void DisplayChoice()
     {
         Container.gameObject.SetActive(true);
-        List<Upgrade> Upgrades = DraftUpgrade(4);
+        m_UpgradeSelected =  DraftUpgrade(4);
         foreach (UpgradeUI upgradeUI in m_UpgradeUIArray)
         {
-            int randUpgrade = Random.Range(0, Upgrades.Count);
+            int randUpgrade = Random.Range(0, m_UpgradeSelected.Count);
             upgradeUI.InitUI(m_UpgradeList[randUpgrade]);
-            m_UpgradeList.RemoveAt(randUpgrade);
-
         }
+        Time.timeScale = 0f;
     }
 
     List<Upgrade> DraftUpgrade(int nbr)
@@ -37,5 +41,19 @@ public class UpgradeMenu : MonoBehaviour
             m_UpgradeList.RemoveAt(choice);
         }
         return result;
+    }
+
+    private void ResumeGame()
+    {
+        Container.gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
+    public void OnChooseUpgrade(Upgrade upgrade)
+    {
+        m_UpgradeSelected.Remove(upgrade);
+        m_UpgradeList.AddRange(m_UpgradeSelected);
+        m_UpgradeSelected.Clear();
+        ResumeGame();
     }
 }
