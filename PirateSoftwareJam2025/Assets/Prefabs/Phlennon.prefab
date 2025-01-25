@@ -206,6 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  xpValue: 1
+  ExperiencePiece: {fileID: 4809719966713682007, guid: 97a4823b9d79a4e48bf63cfed2a54753, type: 3}
   shootRange: 6
   retreatRange: 4
   phlegmDamage: 20

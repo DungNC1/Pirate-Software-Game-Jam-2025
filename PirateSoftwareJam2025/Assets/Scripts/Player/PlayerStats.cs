@@ -8,8 +8,8 @@ public class PlayerStats : ScriptableObject
     public float MinionCreationCooldown = 0.2f;
     public enum BulletType {
         Regular,
-        Poison,
         Bounce,
+        Poison,
         Explode,
         Melee,
         Stun

@@ -12,81 +12,14 @@ public class SlowEnemy : MonoBehaviour
 
     public IEnumerator SlowDown()
     {
-        switch (enemyType)
+        AbstractEnnemy ennemy = GetComponent<AbstractEnnemy>();
+        if (ennemy != null && !isSlowed)
         {
-            case EnemyType.ChasingEnemy:
-                ChasingEnemy chasingEnemy = GetComponent<ChasingEnemy>();
-                if (chasingEnemy != null && !isSlowed)
-                {
-                    isSlowed = true;
-                    float originalSpeed = chasingEnemy.speed;
-                    chasingEnemy.speed *= slowDownFactor;
-                    yield return new WaitForSeconds(slowDownDuration);
-                    isSlowed = false;
-                    chasingEnemy.speed = originalSpeed;
-                }
-                break;
-
-            case EnemyType.Wheezlin:
-                Wheezlin wheezlin = GetComponent<Wheezlin>();
-                if (wheezlin != null && !isSlowed)
-                {
-                    isSlowed = true;
-                    float originalSpeed = wheezlin.speed;
-                    wheezlin.speed *= slowDownFactor;
-                    yield return new WaitForSeconds(slowDownDuration);
-                    isSlowed = false;
-                    wheezlin.speed = originalSpeed;
-                }
-                break;
-            case EnemyType.Tomache:
-                Tomache tomache = GetComponent<Tomache>();
-                if (tomache != null && !isSlowed)
-                {
-                    isSlowed = true;
-                    float originalSpeed = tomache.currentSpeed;
-                    tomache.currentSpeed *= slowDownFactor;
-                    yield return new WaitForSeconds(slowDownDuration);
-                    isSlowed = false;
-                    tomache.currentSpeed = originalSpeed;
-                }
-                break;
-            case EnemyType.Charvader:
-                Charvader charvader = GetComponent<Charvader>();
-                if (charvader != null && !isSlowed)
-                {
-                    isSlowed = true;
-                    float originalSpeed = charvader.speed;
-                    charvader.speed *= slowDownFactor;
-                    yield return new WaitForSeconds(slowDownDuration);
-                    isSlowed = false;
-                    charvader.speed = originalSpeed;
-                }
-                break;
-            case EnemyType.Phlennon:
-                Phlennon phlennon = GetComponent<Phlennon>();
-                if (phlennon != null && !isSlowed)
-                {
-                    isSlowed = true;
-                    float originalSpeed = phlennon.speed;
-                    phlennon.speed *= slowDownFactor;
-                    yield return new WaitForSeconds(slowDownDuration);
-                    isSlowed = false;
-                    phlennon.speed = originalSpeed;
-                }
-                break;
-            case EnemyType.Deathrus:
-                Deathurus deathurus = GetComponent<Deathurus>();
-                if (deathurus != null && !isSlowed)
-                {
-                    isSlowed = true;
-                    float originalSpeed = deathurus.speed;
-                    deathurus.speed *= slowDownFactor;
-                    yield return new WaitForSeconds(slowDownDuration);
-                    isSlowed = false;
-                    deathurus.speed = originalSpeed;
-                }
-                break;
+            isSlowed = true;
+            GlobalPassiveEffects.Instance.UpdateSlowDebuff(slowDownFactor);
+            yield return new WaitForSeconds(slowDownDuration);
+            isSlowed = false;
+            GlobalPassiveEffects.Instance.UpdateSlowDebuff(-slowDownFactor);
         }
     }
 }

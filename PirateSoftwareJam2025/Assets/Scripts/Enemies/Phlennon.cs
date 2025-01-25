@@ -22,8 +22,9 @@ public class Phlennon : AbstractEnnemy
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         FindClosestClone();
     }
 
@@ -92,13 +93,13 @@ public class Phlennon : AbstractEnnemy
     private void MoveTowardsPlayer()
     {
         Vector2 direction = (closestClone.position - transform.position).normalized;
-        rb.velocity = direction * speed;
+        rb.velocity = direction * FinalSpeed;
     }
 
     private void MoveAwayFromPlayer()
     {
         Vector2 direction = (transform.position - closestClone.position).normalized;
-        rb.velocity = direction * speed;
+        rb.velocity = direction * FinalSpeed;
     }
 
     private void RotatePhlegmBullet()

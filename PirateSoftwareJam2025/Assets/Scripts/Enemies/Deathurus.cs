@@ -15,8 +15,9 @@ public class Deathurus : AbstractEnnemy
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         FindClosestClone();
     }
 
@@ -71,7 +72,7 @@ public class Deathurus : AbstractEnnemy
     private void MoveTowardsClone()
     {
         Vector2 direction = (closestClone.position - transform.position).normalized;
-        rb.velocity = direction * speed;
+        rb.velocity = direction * FinalSpeed;
     }
 
     private void AttackClone()

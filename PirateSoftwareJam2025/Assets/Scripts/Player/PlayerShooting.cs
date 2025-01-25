@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -139,6 +138,9 @@ public class PlayerShooting : MonoBehaviour
     public void AddAmmo(BulletType type, int ammount)
     {
         Ammunitions[type] += ammount;
+        if (GlobalPassiveEffects.Instance.RollGaloreChance())
+            Ammunitions[type] += ammount;
+        
     }
 
     void InitAmmunition()
@@ -227,5 +229,24 @@ public class PlayerShooting : MonoBehaviour
         {
             Destroy(MinionBehaviours[0].gameObject);
         }
+    }
+
+    public void ConvertAllAmmoToOne()
+    {
+        int AllAmmo = 0;
+        foreach (KeyValuePair<BulletType, int> Bullet in Ammunitions)
+        {
+            AllAmmo += Bullet.Value;
+            Ammunitions[Bullet.Key] = 0;
+        }
+
+        Array values = Enum.GetValues(typeof(BulletType));
+        System.Random random = new System.Random();
+        BulletType randomAmmo = (BulletType)values.GetValue(random.Next(values.Length));
+        Ammunitions[randomAmmo] = AllAmmo;
+
+        currentAmmoIndex = (int)randomAmmo;
+        playerStats.bulletType = randomAmmo;
+        CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
     }
 }

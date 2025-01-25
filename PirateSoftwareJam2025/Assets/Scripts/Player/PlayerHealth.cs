@@ -7,7 +7,8 @@ public class PlayerHealth : MonoBehaviour, IDamagable
 {
     [SerializeField] private int MaxHealth;
     [SerializeField] private int currentHealth;
-    public UnityEvent<Vector3> OnDamaged = new UnityEvent<Vector3>();
+    public UnityEvent<Vector3> OnDamagedPosition = new UnityEvent<Vector3>();
+    public UnityEvent OnDamaged = new UnityEvent();
 
     private void Start()
     {
@@ -18,7 +19,8 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     {
         currentHealth -= damage;
 
-        OnDamaged.Invoke(transform.position);
+        OnDamagedPosition.Invoke(transform.position);
+        OnDamaged.Invoke();
 
         if(currentHealth <= 0) 
         {

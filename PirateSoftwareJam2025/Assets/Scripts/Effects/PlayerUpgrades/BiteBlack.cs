@@ -9,7 +9,7 @@ public class BiteBlack : Upgrade
     public override void ApplyUpgrade()
     {
         PlayerHealth playerHealth = PlayerInputHandler.Instance.GetComponent<PlayerHealth>();
-        playerHealth.OnDamaged.AddListener(BiteBlackAOE);
+        playerHealth.OnDamagedPosition.AddListener(BiteBlackAOE);
     }
 
     public void BiteBlackAOE(Vector3 Position)

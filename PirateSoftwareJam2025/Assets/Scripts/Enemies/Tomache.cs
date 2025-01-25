@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Tomache : AbstractEnnemy
 {
-    [SerializeField] private float initialSpeed = 3f;
     [SerializeField] private float chaseSpeed = 6f;
     [SerializeField] private float detectionRange = 5f;
     [SerializeField] private float attackRange = 1f;
@@ -22,8 +21,9 @@ public class Tomache : AbstractEnnemy
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         FindClosestTarget();
     }
 
@@ -89,7 +89,7 @@ public class Tomache : AbstractEnnemy
             return;
         }
 
-        currentSpeed = isChasing ? chaseSpeed : initialSpeed;
+        currentSpeed = isChasing ? (chaseSpeed) * (1 - GlobalPassiveEffects.Instance.EnnemiesSlowDebuffPercentage) : FinalSpeed;
     }
 
     private void AttackTarget()

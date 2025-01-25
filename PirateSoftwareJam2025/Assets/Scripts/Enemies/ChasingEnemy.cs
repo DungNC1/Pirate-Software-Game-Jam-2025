@@ -10,8 +10,9 @@ public class ChasingEnemy : AbstractEnnemy
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -20,7 +21,7 @@ public class ChasingEnemy : AbstractEnnemy
         if (player != null)
         {
             Vector3 direction = (player.position - transform.position).normalized;
-            rb.velocity = new Vector2(direction.x, direction.y) * speed;
+            rb.velocity = new Vector2(direction.x, direction.y) * FinalSpeed;
         }
     }
 }

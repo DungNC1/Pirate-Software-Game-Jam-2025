@@ -16,6 +16,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     private void Start()
     {
         currentHealth = health;
+        GlobalPassiveEffects.Instance.PVDebuffChange.AddListener(ChangeHealth);
     }
 
     public void TakeDamage(int damage)
@@ -27,5 +28,11 @@ public class EnemyHealth : MonoBehaviour, IDamagable
             MainScriptRef.Die();
             Destroy(gameObject);
         }
+    }
+
+    public void ChangeHealth(float percentage)
+    {
+        currentHealth = (int)(currentHealth * (1 + percentage));
+        health = (int)(health * (1 + percentage));
     }
 }

@@ -26,7 +26,7 @@ public class StunBullet : AbstractBullet
         if (collision.gameObject.CompareTag("Enemy"))
         {
             SlowEnemy slowEnemy = collision.gameObject.GetComponent<SlowEnemy>();
-            collision.gameObject.GetComponent<IDamagable>().TakeDamage(1);
+            collision.gameObject.GetComponent<IDamagable>().TakeDamage((int)FinalDamage);
 
             if (slowEnemy != null)
             {

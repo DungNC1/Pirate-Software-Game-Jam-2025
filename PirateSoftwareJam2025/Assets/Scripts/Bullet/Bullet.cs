@@ -24,7 +24,7 @@ public class Bullet : AbstractBullet
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<IDamagable>().TakeDamage(1);
+            collision.gameObject.GetComponent<IDamagable>().TakeDamage((int)FinalDamage);
         }
 
         SetInactive();

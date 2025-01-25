@@ -189,6 +189,7 @@ MonoBehaviour:
   enemyType: 2
   slowDownFactor: 0.5
   slowDownDuration: 2
+  isSlowed: 0
 --- !u!114 &-2616604861858210203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb145c4b724ca50488dec394ecb8d90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 3
+  speed: 5
+  xpValue: 1
+  ExperiencePiece: {fileID: 4809719966713682007, guid: 97a4823b9d79a4e48bf63cfed2a54753, type: 3}
   chaseSpeed: 7
   detectionRange: 5
   attackRange: 1
