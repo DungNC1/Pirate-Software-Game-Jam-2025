@@ -28,6 +28,8 @@ public class PlayerShooting : MonoBehaviour
     List<MinionBehaviour> MinionBehaviours = new List<MinionBehaviour>();
     [SerializeField] private int MaxMinion = 2;
     private bool LockMinionNumber = false;
+    private float timer;
+
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -43,14 +45,32 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-        FindClosestEnemyInView();
+        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 rotation = mousePosition - transform.position;
+        float zRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, zRotation);
+
+        if (!canFire)
+        {
+            timer += Time.deltaTime;
+            if (timer > playerStats.shootCooldown)
+            {
+                canFire = true;
+                timer = 0;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            HandleFire();
+        }
+
         HandleCreateMinion();
 
         if (closestEnemy == null)
             return;
 
         HandleRotation();
-        HandleFire();
     }
 
     private void HandleRotation()
@@ -80,37 +100,14 @@ public class PlayerShooting : MonoBehaviour
         switch(playerStats.bulletType) 
         {
             case BulletType.Regular:
-                GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
-                bullet.GetComponent<Bullet>().SetDirection(closestEnemy.transform.position);
+                Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
             case BulletType.Bounce:
-                GameObject bouncingBullet = Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                bouncingBullet.GetComponent<BouncingBullet>().SetDirection(closestEnemy.transform.position);
+                Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
             case BulletType.Stun:
-                GameObject stunBullet = Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                stunBullet.GetComponent<StunBullet>().SetDirection(closestEnemy.transform.position);
+                Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
-        }
-    }
-
-    private void FindClosestEnemyInView()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        float minDistance = Mathf.Infinity;
-
-        foreach (GameObject enemy in enemies)
-        {
-            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(enemy.transform.position);
-            if (viewportPoint.x >= 0 && viewportPoint.x <= 1 && viewportPoint.y >= 0 && viewportPoint.y <= 1)
-            {
-                float distance = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distance < minDistance)
-                {
-                    closestEnemy = enemy;
-                    minDistance = distance;
-                }
-            }
         }
     }
 

@@ -6,19 +6,24 @@ public class StunBullet : AbstractBullet
 {
     [SerializeField] private float force;
     [SerializeField] private float lifetime = 5f;
+    private Vector3 mousePosition;
+    private Camera mainCamera;
 
     public override void Awake()
     {
         base.Awake();
+        mainCamera = Camera.main;
         Invoke("SetInactive", lifetime);
     }
 
-    public void SetDirection(Vector3 targetPosition)
+    private void Start()
     {
-        Vector3 direction = targetPosition - transform.position;
-        rb.velocity = direction.normalized * force;
-        float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, zRotation);
+        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mousePosition - transform.position;
+        Vector3 rotation = transform.position - mousePosition;
+        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
