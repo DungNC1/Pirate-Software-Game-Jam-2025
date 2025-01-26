@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b38554e78ead9473f8afdd59b61f43a4
+guid: 5dc8de3077fab4b7795dc4cc48ddddbd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,127 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Phlegm_0
+      name: Pinkeye_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1080
+        y: 0
         width: 1080
         height: 1080
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7108d5cf9858c41fbbd3389ad6c8cc11
-      internalID: -1727948576
+      spriteID: 65029b7a8d0d14b54a7694f7707b53f1
+      internalID: 1070540901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phlegm_1
+      name: Pinkeye_1
       rect:
         serializedVersion: 2
         x: 1080
-        y: 1080
+        y: 0
         width: 1080
         height: 1080
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 349688a3dca2145f584b8d2637fc43ab
-      internalID: 1238220424
+      spriteID: 78e750bac754a4600837aee1166a0ba8
+      internalID: -1194569634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phlegm_2
+      name: Pinkeye_2
       rect:
         serializedVersion: 2
         x: 2160
-        y: 1080
+        y: 0
         width: 1080
         height: 1080
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23acb14ca62e14e04af24197c8ddec70
-      internalID: 800760696
+      spriteID: 7fd35e2c0f9f1438f9c5881c12d8d792
+      internalID: -1852062975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phlegm_3
+      name: Pinkeye_3
       rect:
         serializedVersion: 2
         x: 3240
-        y: 1080
-        width: 1080
-        height: 1080
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 915b35ab52e5b4096abb96daf1c7ee82
-      internalID: -1444323823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Phlegm_4
-      rect:
-        serializedVersion: 2
-        x: 0
         y: 0
         width: 1080
         height: 1080
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e749000887ac44d7cbf118314cc33875
-      internalID: 566541622
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Phlegm_5
-      rect:
-        serializedVersion: 2
-        x: 1080
-        y: 0
-        width: 1080
-        height: 1080
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35e06b7cd87fa488ca851a48192c79f2
-      internalID: -640830121
+      spriteID: 98b543d7c750745d2b3628e5c70b58ec
+      internalID: 973637223
       vertices: []
       indices: 
       edges: []
@@ -246,12 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Phlegm_0: -1727948576
-      Phlegm_1: 1238220424
-      Phlegm_2: 800760696
-      Phlegm_3: -1444323823
-      Phlegm_4: 566541622
-      Phlegm_5: -640830121
+      Pinkeye_0: 1070540901
+      Pinkeye_1: -1194569634
+      Pinkeye_2: -1852062975
+      Pinkeye_3: 973637223
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
