@@ -5,7 +5,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class Experience : MonoBehaviour
 {
-    private int xpValue;
+    private int xpValue = 1;
     public void Init(int amount)
     {
         xpValue = amount;

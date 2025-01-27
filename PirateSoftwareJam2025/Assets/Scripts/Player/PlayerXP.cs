@@ -25,7 +25,6 @@ public class PlayerXP : MonoBehaviour
     public void GainXP(int xp)
     {
         currentXP += xp;
-
         CheckXPCount();
     }
 

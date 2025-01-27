@@ -15,10 +15,12 @@ public abstract class AbstractEnnemy : MonoBehaviour
 
     public virtual void Die()
     {
-        Instantiate(ExperiencePiece,transform.position,Quaternion.identity);
+        Experience SpawnedExperiencePiece = Instantiate(ExperiencePiece,transform.position,Quaternion.identity);
+        SpawnedExperiencePiece.Init(xpValue);
         if (!GlobalPassiveEffects.Instance.RollGutsChance())
             return;
-        Instantiate(ExperiencePiece, transform.position, Quaternion.identity);
+        SpawnedExperiencePiece = Instantiate(ExperiencePiece, transform.position, Quaternion.identity);
+        SpawnedExperiencePiece.Init(xpValue);
     }
 
     public void ChangeSpeed(float percentage)
