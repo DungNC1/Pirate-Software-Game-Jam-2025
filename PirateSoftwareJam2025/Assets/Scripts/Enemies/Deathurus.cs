@@ -21,8 +21,9 @@ public class Deathurus : AbstractEnnemy
         FindClosestClone();
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (closestClone != null)
         {
             MoveTowardsClone();

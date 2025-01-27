@@ -7,12 +7,24 @@ public abstract class AbstractEnnemy : MonoBehaviour
     public float GetSpeed { get { return FinalSpeed; } }
     public int xpValue = 1;
     [SerializeField] Experience ExperiencePiece;
+    private Rigidbody2D RB;
+    private SpriteRenderer SR;
     public virtual void Start()
     {
         FinalSpeed = speed;
         GlobalPassiveEffects.Instance.SlowDebuffChange.AddListener(ChangeSpeed);
+
+        RB = GetComponent<Rigidbody2D>();
+        SR = GetComponentInChildren<SpriteRenderer>();
     }
 
+    protected virtual void Update()
+    {
+        if(RB.velocity.x < 0)
+            SR.flipX = true;
+        else
+            SR.flipX = false;
+    }
     public virtual void Die()
     {
         Experience SpawnedExperiencePiece = Instantiate(ExperiencePiece,transform.position,Quaternion.identity);

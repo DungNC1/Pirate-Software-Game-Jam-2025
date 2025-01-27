@@ -2,6 +2,7 @@ using UnityEngine;
 
 public sealed class PlayerMovement : MonoBehaviour
 {
+
     [SerializeField] PlayerStats m_playerStats;
     public float speed;
     public bool isSlowed = false; 
@@ -13,6 +14,8 @@ public sealed class PlayerMovement : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         speed = m_playerStats.Speed;
     }
+
+
     void FixedUpdate()
     {
         HandleMovementInput();

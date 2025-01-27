@@ -26,8 +26,9 @@ public class Charvader : AbstractEnnemy
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (player != null)
         {
             MoveTowardsPlayer();
