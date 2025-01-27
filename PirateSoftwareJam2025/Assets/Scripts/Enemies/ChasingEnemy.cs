@@ -16,8 +16,9 @@ public class ChasingEnemy : AbstractEnnemy
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (player != null)
         {
             Vector3 direction = (player.position - transform.position).normalized;

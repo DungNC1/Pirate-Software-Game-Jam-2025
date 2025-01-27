@@ -28,8 +28,9 @@ public class Phlennon : AbstractEnnemy
         FindClosestClone();
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (closestClone != null)
         {
             float distanceToPlayer = Vector2.Distance(transform.position, closestClone.position);

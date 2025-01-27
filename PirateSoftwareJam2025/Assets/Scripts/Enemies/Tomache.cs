@@ -27,8 +27,9 @@ public class Tomache : AbstractEnnemy
         FindClosestTarget();
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (target != null)
         {
             MoveTowardsTarget();
