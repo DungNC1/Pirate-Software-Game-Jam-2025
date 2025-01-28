@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e126d039f616a94fa01f569c952a6df, type: 3}
   m_Name: AllIsOne
   m_EditorClassIdentifier: 
-  Name: 
+  Name: All is one
+  Description: Convert all vita chips to a new random one
+  Icon: {fileID: 0}

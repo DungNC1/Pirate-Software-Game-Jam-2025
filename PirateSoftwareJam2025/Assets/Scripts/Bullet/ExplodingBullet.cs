@@ -30,7 +30,7 @@ public class ExplodingBullet : AbstractBullet
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Explode();
-            Destroy(gameObject);
+            SetInactive();
         }
     }
 

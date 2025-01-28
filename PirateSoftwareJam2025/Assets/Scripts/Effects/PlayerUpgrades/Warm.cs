@@ -7,5 +7,6 @@ public class Warm : Upgrade
     public override void ApplyUpgrade()
     {
         GlobalPassiveEffects.Instance.UpdatePVDebuff(DebuffAmount);
+        GlobalPassiveEffects.Instance.UpdateSlowDebuff(DebuffAmount);
     }
 }

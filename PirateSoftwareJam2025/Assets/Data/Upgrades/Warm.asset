@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe345225da1abda49aaa9a88e693e0a9, type: 3}
   m_Name: Warm
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Warm Greetings
+  Description: The body is getting warmer and viruses are weaker
+  Icon: {fileID: 0}
+  DebuffAmount: 0

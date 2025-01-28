@@ -22,14 +22,21 @@ public class UpgradeMenu : MonoBehaviour
     void DisplayChoice()
     {
         Container.gameObject.SetActive(true);
-        m_UpgradeSelected =  DraftUpgrade(4);
-        foreach (UpgradeUI upgradeUI in m_UpgradeUIArray)
+        m_UpgradeSelected = DraftUpgrade(4);
+
+        for (int i = 0; i < m_UpgradeUIArray.Length; i++)
         {
-            int randUpgrade = Random.Range(0, m_UpgradeSelected.Count);
-            upgradeUI.InitUI(m_UpgradeList[randUpgrade]);
+            if (m_UpgradeSelected.Count > 0)
+            {
+                int randUpgrade = Random.Range(0, m_UpgradeSelected.Count);
+                m_UpgradeUIArray[i].InitUI(m_UpgradeSelected[randUpgrade]);
+                m_UpgradeSelected.RemoveAt(randUpgrade); 
+            }
         }
+
         Time.timeScale = 0f;
     }
+
 
     List<Upgrade> DraftUpgrade(int nbr)
     {

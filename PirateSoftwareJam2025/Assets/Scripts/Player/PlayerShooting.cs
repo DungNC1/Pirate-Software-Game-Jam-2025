@@ -229,20 +229,25 @@ public class PlayerShooting : MonoBehaviour
 
     public void ConvertAllAmmoToOne()
     {
-        int AllAmmo = 0;
-        foreach (KeyValuePair<BulletType, int> Bullet in Ammunitions)
+        int allAmmo = 0;
+        List<BulletType> keys = new List<BulletType>(Ammunitions.Keys); 
+
+        foreach (BulletType key in keys)
         {
-            AllAmmo += Bullet.Value;
-            Ammunitions[Bullet.Key] = 0;
+            allAmmo += Ammunitions[key];
+            Ammunitions[key] = 0;
         }
 
         Array values = Enum.GetValues(typeof(BulletType));
         System.Random random = new System.Random();
         BulletType randomAmmo = (BulletType)values.GetValue(random.Next(values.Length));
-        Ammunitions[randomAmmo] = AllAmmo;
+        Ammunitions[randomAmmo] = allAmmo;
 
-        currentAmmoIndex = (int)randomAmmo;
+        currentAmmoIndex = bulletTypesCycleTracker.IndexOf(randomAmmo);
         playerStats.bulletType = randomAmmo;
         CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
+
+        AmmoSelectorUI.Instance.SetSelector(currentAmmoIndex);
     }
+
 }
