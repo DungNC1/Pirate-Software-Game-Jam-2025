@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1bd12c5c2c89747b6fb650ed326839, type: 3}
   m_Name: Swarm
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Swarm
+  Description: Increase minion count by +2.
+  Icon: {fileID: 21300000, guid: ae1c367c04b1f411aa44ebb7c17208d8, type: 3}
   MinionSlotBuff: 2

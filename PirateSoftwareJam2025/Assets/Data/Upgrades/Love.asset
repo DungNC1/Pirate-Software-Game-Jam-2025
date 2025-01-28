@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ead71676a4f964abd24b9e0bce32c9, type: 3}
   m_Name: Love
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Spread the Love
+  Description: Increases your health and heals you.
+  Icon: {fileID: 21300000, guid: 8cacef99da9044550ad76fb28cf0b6fb, type: 3}
   HealthBuff: 0

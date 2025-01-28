@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe345225da1abda49aaa9a88e693e0a9, type: 3}
   m_Name: Warm
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Warm Greetings
+  Description: The hot summer fever is causing all enemies to be weaker.
+  Icon: {fileID: 21300000, guid: a7537883a9f194e0396bf0091a4e83b5, type: 3}
+  DebuffAmount: 0

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e126d039f616a94fa01f569c952a6df, type: 3}
   m_Name: AllIsOne
   m_EditorClassIdentifier: 
-  Name: 
+  Name: All is One
+  Description: Converts all Vita Chip ammo into a random Vita Chip type.
+  Icon: {fileID: 21300000, guid: 98ccabc2cd63d455391220464ba9a3e9, type: 3}

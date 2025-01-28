@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1d7b34acc49f24a9d459cb9f1d4969, type: 3}
   m_Name: Mitosis
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Glorious Mitosis
+  Description: Keep a secret clone inside of you. When you die, your clone will take
+    your place.
+  Icon: {fileID: 21300000, guid: ad68c00f8020d4b719257acca79c665d, type: 3}

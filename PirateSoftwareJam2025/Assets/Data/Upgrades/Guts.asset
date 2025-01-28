@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680e4cd49d097de4d899c902bbf9f848, type: 3}
   m_Name: Guts
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Happy Guts
+  Description: Has a chance to give you extra experience.
+  Icon: {fileID: 21300000, guid: 7da4bc90860674b6291b6cbe0ccc7cb6, type: 3}
   Percentage: 0
