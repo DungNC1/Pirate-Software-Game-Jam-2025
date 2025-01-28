@@ -13,6 +13,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject bouncingBulletPrefab;
     [SerializeField] private GameObject stunBulletPrefab;
     [SerializeField] private GameObject poisonBulletPrefab;
+    [SerializeField] private GameObject explodeBulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     [HideInInspector] public float shootCooldown;
@@ -111,6 +112,9 @@ public class PlayerShooting : MonoBehaviour
                 break;
             case BulletType.Poison:
                 Instantiate(poisonBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                break;
+            case BulletType.Explode:
+                Instantiate(explodeBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
         }
     }
