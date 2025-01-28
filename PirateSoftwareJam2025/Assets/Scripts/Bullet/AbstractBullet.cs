@@ -8,7 +8,7 @@ public abstract class AbstractBullet : MonoBehaviour
     protected Rigidbody2D rb;
     public BulletType bulletType;
     public float damage = 1f;
-    protected float FinalDamage;
+    protected float FinalDamage = 1;
 
     public virtual void Awake()
     {
@@ -19,6 +19,7 @@ public abstract class AbstractBullet : MonoBehaviour
     protected virtual void Start()
     {
         FinalDamage = damage;
+        Debug.Log(FinalDamage);
     }
 
     protected void SetInactive()

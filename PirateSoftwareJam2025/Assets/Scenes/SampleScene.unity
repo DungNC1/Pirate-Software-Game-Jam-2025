@@ -2399,6 +2399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5635808925731107533, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5990022612429654993, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
       propertyPath: MaxHealth
       value: 1
@@ -2407,6 +2411,10 @@ PrefabInstance:
       propertyPath: currentHealth
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6869628459145368676, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
+      propertyPath: poisonBulletPrefab
+      value: 
+      objectReference: {fileID: 2227435098529890531, guid: bc8c4d170b48eaa4aa81c7d1f0680838, type: 3}
     - target: {fileID: 8094227844867159312, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
       propertyPath: m_Enabled
       value: 1

@@ -12,6 +12,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject bouncingBulletPrefab;
     [SerializeField] private GameObject stunBulletPrefab;
+    [SerializeField] private GameObject poisonBulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     [HideInInspector] public float shootCooldown;
@@ -108,15 +109,9 @@ public class PlayerShooting : MonoBehaviour
             case BulletType.Stun:
                 Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (mainCamera != null && closestEnemy != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, closestEnemy.transform.position);
+            case BulletType.Poison:
+                Instantiate(poisonBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                break;
         }
     }
 
