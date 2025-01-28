@@ -1,27 +1,33 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BiteBlack", menuName = "ScriptableObjects/UpgradeData/BiteBlack")]
-public class BiteBlack : Upgrade
+[CreateAssetMenu(fileName = "BiteBack", menuName = "ScriptableObjects/UpgradeData/BiteBack")]
+public class BiteBack : Upgrade
 {
-    public float Range = 1;
-    public int Damage = 1;
+    public float Range = 1f;
+    public int Damage = 10;
     public LayerMask LayerMask;
+    public GameObject biteEffectPrefab;
+
     public override void ApplyUpgrade()
     {
         PlayerHealth playerHealth = PlayerInputHandler.Instance.GetComponent<PlayerHealth>();
-        playerHealth.OnDamagedPosition.AddListener(BiteBlackAOE);
+        playerHealth.OnDamagedPosition.AddListener(BiteBackAOE);
     }
 
-    public void BiteBlackAOE(Vector3 Position)
+    public void BiteBackAOE(Vector3 position)
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(Position, Range, LayerMask);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, Range, LayerMask);
         foreach (Collider2D hit in hits)
         {
-            IDamagable Damagable;
-            if (hit.TryGetComponent<IDamagable>(out Damagable))
+            if (hit.TryGetComponent<IDamagable>(out IDamagable damagable))
             {
-                Damagable.TakeDamage(Damage);
+                damagable.TakeDamage(Damage);
             }
+        }
+
+        if (biteEffectPrefab != null)
+        {
+            Instantiate(biteEffectPrefab, position, Quaternion.identity);
         }
     }
 }

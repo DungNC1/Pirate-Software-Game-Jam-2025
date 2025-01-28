@@ -16,7 +16,6 @@ public class PlayerHealth : MonoBehaviour, IDamagable
         currentHealth = MaxHealth;
     }
 
-    
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -24,7 +23,7 @@ public class PlayerHealth : MonoBehaviour, IDamagable
         OnDamagedPosition.Invoke(transform.position);
         OnDamaged.Invoke();
 
-        if(currentHealth <= 0) 
+        if (currentHealth <= 0)
         {
             OnDie.Invoke();
         }

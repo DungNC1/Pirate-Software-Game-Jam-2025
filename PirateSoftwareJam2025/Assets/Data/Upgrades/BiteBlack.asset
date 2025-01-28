@@ -15,8 +15,9 @@ MonoBehaviour:
   Name: Bite back
   Description: When damaged, deal a large melee bite attack around the player
   Icon: {fileID: 0}
-  Range: 1
+  Range: 1.5
   Damage: 1
   LayerMask:
     serializedVersion: 2
     m_Bits: 0
+  biteEffectPrefab: {fileID: 8473328665852289768, guid: 1d2914417810d464584db2c12af907c3, type: 3}
