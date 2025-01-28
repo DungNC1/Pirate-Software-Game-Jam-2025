@@ -6,7 +6,9 @@ using UnityEngine.Events;
 public class PlayerHealth : MonoBehaviour, IDamagable
 {
     [SerializeField] private int MaxHealth;
+    public int GetMaxHealth {  get { return MaxHealth; } }
     [SerializeField] private int currentHealth;
+    public int GetCurrentHealth { get { return currentHealth; } }
     public UnityEvent<Vector3> OnDamagedPosition = new UnityEvent<Vector3>();
     public UnityEvent OnDamaged = new UnityEvent();
     public UnityEvent OnDie = new UnityEvent();
