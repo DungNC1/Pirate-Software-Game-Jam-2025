@@ -9,13 +9,15 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     public int GetMaxHealth {  get { return MaxHealth; } }
     [SerializeField] private int currentHealth;
     public int GetCurrentHealth { get { return currentHealth; } }
+    [SerializeField] DamageIndicator indicator;
     public UnityEvent<Vector3> OnDamagedPosition = new UnityEvent<Vector3>();
-    public UnityEvent OnDamaged = new UnityEvent();
+    public UnityEvent<int> OnDamaged = new UnityEvent<int>();
     public UnityEvent OnDie = new UnityEvent();
 
     private void Start()
     {
         currentHealth = MaxHealth;
+
     }
 
     public void TakeDamage(int damage)
@@ -23,7 +25,7 @@ public class PlayerHealth : MonoBehaviour, IDamagable
         currentHealth -= damage;
 
         OnDamagedPosition.Invoke(transform.position);
-        OnDamaged.Invoke();
+        OnDamaged.Invoke(damage);
 
         if (currentHealth <= 0)
         {
@@ -41,5 +43,11 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     {
         currentHealth += healing;
         currentHealth = Mathf.Clamp(currentHealth, 0, MaxHealth);
+    }
+
+    void SpawnIndicator(int damage)
+    {
+        DamageIndicator TempIndicator = Instantiate(indicator, transform.position,Quaternion.identity);
+        TempIndicator.InitDamage(damage);
     }
 }

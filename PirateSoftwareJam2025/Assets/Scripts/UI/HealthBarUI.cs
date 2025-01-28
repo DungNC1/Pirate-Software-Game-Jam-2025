@@ -13,7 +13,7 @@ public class HealthBarUI : MonoBehaviour
         playerHealth.OnDamaged.AddListener(SetSlider);
     }
 
-    public void SetSlider()
+    public void SetSlider(int value)
     {
         HealthSlider.maxValue = playerHealth.GetMaxHealth;
         HealthSlider.value = playerHealth.GetCurrentHealth;

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -47,7 +48,7 @@ public class GlobalPassiveEffects : MonoBehaviour
         PVDebuffChange.Invoke(EnnemiesPVDebuffPercentage);
     }
 
-    public void UpdateDamageBuff()
+    public void UpdateDamageBuff(int value)
     {
         PlayerDamageBuffPercentage += PlayerDamageBuffPercentageIncrement;
         DamageBuffChange.Invoke(PlayerDamageBuffPercentage);

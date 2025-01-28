@@ -214,6 +214,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5817108640050918912, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
   bouncingBulletPrefab: {fileID: 2925804891647512289, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
   stunBulletPrefab: {fileID: 2227435098529890531, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
+  poisonBulletPrefab: {fileID: 0}
+  explodeBulletPrefab: {fileID: 0}
   playerStats: {fileID: 11400000, guid: e4b46a9a46cacaa41b355a5390af233c, type: 2}
   firePoint: {fileID: 5635808925731107533}
   shootCooldown: 0
@@ -457,10 +459,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   currentHealth: 0
+  indicator: {fileID: 8322613381256445568, guid: 7bee38ce2f486ff4eb7a973b06eb4d04, type: 3}
   OnDamagedPosition:
     m_PersistentCalls:
       m_Calls: []
   OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &8777710299222376743
@@ -503,6 +509,9 @@ MonoBehaviour:
   currentLevel: 1
   XPToNextLevel: 0
   LevelGained:
+    m_PersistentCalls:
+      m_Calls: []
+  XPGained:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &3755463022603724420

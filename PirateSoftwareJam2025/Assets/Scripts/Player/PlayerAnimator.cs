@@ -27,7 +27,7 @@ public class PlayerAnimator : MonoBehaviour
         transform.parent.GetComponent<PlayerHealth>().OnDie.AddListener(DieAnimation); 
     }
 
-    void HitAnimation()
+    void HitAnimation(int value)
     {
         StartCoroutine("HitCoroutine");
     }
