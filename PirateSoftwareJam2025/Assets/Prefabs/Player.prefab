@@ -211,11 +211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770b55b836543b3439d0c33a941227f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5817108640050918912, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
-  bouncingBulletPrefab: {fileID: 2925804891647512289, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
-  stunBulletPrefab: {fileID: 2227435098529890531, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
-  poisonBulletPrefab: {fileID: 0}
-  explodeBulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 4630839448727378975, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
+  bouncingBulletPrefab: {fileID: 346457896299816142, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
+  stunBulletPrefab: {fileID: 6440011860822944578, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
+  poisonBulletPrefab: {fileID: 6133053015447802254, guid: bc8c4d170b48eaa4aa81c7d1f0680838, type: 3}
+  explodeBulletPrefab: {fileID: -572529303209502506, guid: 8fbc5e11062debb489e72bc85346853b, type: 3}
   playerStats: {fileID: 11400000, guid: e4b46a9a46cacaa41b355a5390af233c, type: 2}
   firePoint: {fileID: 5635808925731107533}
   shootCooldown: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   SpawnTimer: 0
   Minion: {fileID: 8493572803005587068, guid: 331f8cd11c739534e82aae6885af364e, type: 3}
   MaxMinion: 2
+  MinionCost: 2
 --- !u!1 &1558698485950650302
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 1558698485950650302}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0833333, y: 0, z: 0}
+  m_LocalPosition: {x: 2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -457,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1724a806c3d927a49966c946d9a4e38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 0
+  MaxHealth: 10
   currentHealth: 0
   indicator: {fileID: 8322613381256445568, guid: 7bee38ce2f486ff4eb7a973b06eb4d04, type: 3}
   OnDamagedPosition:

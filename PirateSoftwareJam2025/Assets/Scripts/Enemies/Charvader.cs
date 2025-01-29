@@ -23,6 +23,7 @@ public class Charvader : AbstractEnnemy
 
     public override void Start()
     {
+        base.Start();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 

@@ -207,8 +207,6 @@ public class PlayerShooting : MonoBehaviour
 
     public void AddMinionLimit(int amount)
     {
-        if (LockMinionNumber)
-            return;
         MaxMinion += amount;
     }
 

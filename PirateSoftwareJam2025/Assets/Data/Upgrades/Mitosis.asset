@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1d7b34acc49f24a9d459cb9f1d4969, type: 3}
   m_Name: Mitosis
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Glorious Mitosis
+  Description: Keep a secret clone inside of you. When you die, your clone would
+    pop out to take your place
+  Icon: {fileID: 0}
+  playerPrefab: {fileID: 3069619169956562714, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}

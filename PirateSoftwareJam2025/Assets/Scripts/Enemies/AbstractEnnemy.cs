@@ -12,23 +12,32 @@ public abstract class AbstractEnnemy : MonoBehaviour
 
     public virtual void Start()
     {
-        Debug.Log("Start");
-        FinalSpeed = speed;
-
-        GlobalPassiveEffects.Instance.SlowDebuffChange.AddListener(ChangeSpeed);
-
-        ChangeSpeed(GlobalPassiveEffects.Instance.EnnemiesSlowDebuffPercentage);
-
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponentInChildren<SpriteRenderer>();
+
+        if (RB == null)
+        {
+            Debug.LogError("Rigidbody2D is missing on " + gameObject.name);
+        }
+        if (SR == null)
+        {
+            Debug.LogError("SpriteRenderer is missing on " + gameObject.name);
+        }
+
+        FinalSpeed = speed;
+        GlobalPassiveEffects.Instance.SlowDebuffChange.AddListener(ChangeSpeed);
+        ChangeSpeed(GlobalPassiveEffects.Instance.EnnemiesSlowDebuffPercentage);
     }
 
     protected virtual void Update()
     {
-        if (RB.velocity.x < 0)
-            SR.flipX = true;
-        else
-            SR.flipX = false;
+        if (RB != null)
+        {
+            if (RB.velocity.x < 0)
+                SR.flipX = true;
+            else
+                SR.flipX = false;
+        }
     }
 
     public virtual void Die()
