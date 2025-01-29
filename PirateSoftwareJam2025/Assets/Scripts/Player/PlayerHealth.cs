@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,11 +19,13 @@ public class PlayerHealth : MonoBehaviour, IDamagable
 
     [SerializeField] private Volume v;
     [SerializeField] private Vignette vg;
+    CinemachineImpulseSource source;
 
     private float biteBackRange = 1.5f;
 
     private void Start()
     {
+        TryGetComponent(out source);
         currentHealth = MaxHealth;
         v = Camera.main.GetComponent<Volume>();
         v.profile.TryGet(out vg);
@@ -35,6 +38,7 @@ public class PlayerHealth : MonoBehaviour, IDamagable
         OnDamagedPosition.Invoke(transform.position);
         OnDamaged.Invoke(damage);
         SetRedVignetteIntensity();
+        source.GenerateImpulse();
         if (currentHealth <= 0)
         {
             OnDie.Invoke();
