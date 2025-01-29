@@ -10,6 +10,7 @@ public abstract class AbstractBullet : MonoBehaviour
     public float damage = 1f;
     protected float FinalDamage = 1;
     private GameObject player;
+    protected Vector3 Direction = Vector3.zero;
 
     public virtual void Awake()
     {
@@ -22,6 +23,11 @@ public abstract class AbstractBullet : MonoBehaviour
         FinalDamage = damage;
         Debug.Log(FinalDamage);
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void InitDirection(Vector3 Target)
+    {
+        Direction = Target - transform.position;
     }
 
     protected void SetInactive()

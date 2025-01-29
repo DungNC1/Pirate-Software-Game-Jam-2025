@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 166747577296236516}
   - component: {fileID: 8493572803005587068}
   - component: {fileID: 6944622421648536603}
+  - component: {fileID: 5570727156831727218}
   - component: {fileID: 6455796533929018098}
   m_Layer: 6
   m_Name: DefaultMinion
@@ -156,6 +157,8 @@ MonoBehaviour:
   m_MinDistanceToPlayer: 2
   m_Speed: 5
   m_Health: 1
+  m_AttackCD: 1
+  m_AttackCDDecreasing: 1
   m_RegularMinionData: {fileID: 11400000, guid: 2fbb4b311f01be04aa3516c6aa68c17d, type: 2}
   m_PoisonMinionData: {fileID: 11400000, guid: fe1a3a33634c6a04fb44deb805e67e23, type: 2}
   m_BounceMinionData: {fileID: 11400000, guid: 13d6ca44bc434764888b3f3fbaddb379, type: 2}
@@ -165,6 +168,12 @@ MonoBehaviour:
   MinionDie:
     m_PersistentCalls:
       m_Calls: []
+  bulletPrefab: {fileID: 4630839448727378975, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
+  bouncingBulletPrefab: {fileID: 346457896299816142, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
+  stunBulletPrefab: {fileID: 6440011860822944578, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
+  poisonBulletPrefab: {fileID: 6133053015447802254, guid: bc8c4d170b48eaa4aa81c7d1f0680838, type: 3}
+  explodeBulletPrefab: {fileID: -572529303209502506, guid: 8fbc5e11062debb489e72bc85346853b, type: 3}
+  circleCollider2D: {fileID: 5570727156831727218}
 --- !u!50 &6944622421648536603
 Rigidbody2D:
   serializedVersion: 4
@@ -192,6 +201,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!58 &5570727156831727218
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229463579690927380}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!58 &6455796533929018098
 CircleCollider2D:
   m_ObjectHideFlags: 0

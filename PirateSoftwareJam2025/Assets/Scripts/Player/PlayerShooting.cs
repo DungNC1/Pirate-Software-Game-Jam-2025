@@ -9,11 +9,11 @@ public class PlayerShooting : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Camera mainCamera;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject bouncingBulletPrefab;
-    [SerializeField] private GameObject stunBulletPrefab;
-    [SerializeField] private GameObject poisonBulletPrefab;
-    [SerializeField] private GameObject explodeBulletPrefab;
+    [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] private BouncingBullet bouncingBulletPrefab;
+    [SerializeField] private StunBullet stunBulletPrefab;
+    [SerializeField] private PoisonBullet poisonBulletPrefab;
+    [SerializeField] private ExplodingBullet explodeBulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     [HideInInspector] public float shootCooldown;
@@ -31,6 +31,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private int MaxMinion = 2;
     private bool LockMinionNumber = false;
     private float timer;
+    [SerializeField] int MinionCost = 2;
 
     private void Awake()
     {
@@ -95,35 +96,38 @@ public class PlayerShooting : MonoBehaviour
             return;
         }
 
-        if (!CheckAndUseAmmo())
+        if (!CheckAndUseAmmo(1))
             return;
 
         canFire = false;
+        AbstractBullet spawnedBullet = null;
         switch(playerStats.bulletType) 
         {
             case BulletType.Regular:
-                Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
+                spawnedBullet = Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
             case BulletType.Bounce:
-                Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                spawnedBullet = Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
             case BulletType.Stun:
-                Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                spawnedBullet = Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
             case BulletType.Poison:
-                Instantiate(poisonBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                spawnedBullet = Instantiate(poisonBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
             case BulletType.Explode:
-                Instantiate(explodeBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                spawnedBullet = Instantiate(explodeBulletPrefab, firePoint.transform.position, Quaternion.identity);
                 break;
         }
+        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        spawnedBullet.InitDirection(mousePosition);
     }
 
-    private bool CheckAndUseAmmo()
+    private bool CheckAndUseAmmo(int amount)
     {
-        if (Ammunitions[playerStats.bulletType] > 0)
+        if (Ammunitions[playerStats.bulletType] >= amount)
         {
-            Ammunitions[playerStats.bulletType]--;
+            Ammunitions[playerStats.bulletType] -= amount;
             CurrentAmmo = Ammunitions[playerStats.bulletType];
             return true;
         }
@@ -180,7 +184,7 @@ public class PlayerShooting : MonoBehaviour
         if (MinionBehaviours.Count >= MaxMinion)
             return;
 
-        if (!CheckAndUseAmmo())
+        if (!CheckAndUseAmmo(MinionCost))
             return;
 
         canSpawnMinion = false;

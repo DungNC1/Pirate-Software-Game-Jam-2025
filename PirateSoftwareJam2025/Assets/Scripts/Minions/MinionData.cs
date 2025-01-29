@@ -3,6 +3,8 @@ using UnityEngine;
 public class MinionData : ScriptableObject
 {
     public float health = 1;
+    public float AggroRadius = 5f;
+    public float AttackCooldown = 1f;
 }
 
 [CreateAssetMenu(fileName = "RegularMinionData", menuName = "ScriptableObjects/MinionData/RegularMinionData")]
