@@ -21,7 +21,7 @@ public class Charvader : AbstractEnnemy
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    public override void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }

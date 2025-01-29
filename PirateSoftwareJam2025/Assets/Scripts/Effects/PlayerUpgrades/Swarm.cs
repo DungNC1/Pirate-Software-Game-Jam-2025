@@ -7,6 +7,6 @@ public class Swarm : Upgrade
     public override void ApplyUpgrade()
     {
         PlayerShooting playerShooting = PlayerInputHandler.Instance.GetComponent<PlayerShooting>();
-        playerShooting.AddMinionLimit(MinionSlotBuff);
+        //playerShooting.AddMinionLimit(MinionSlotBuff);
     }
 }

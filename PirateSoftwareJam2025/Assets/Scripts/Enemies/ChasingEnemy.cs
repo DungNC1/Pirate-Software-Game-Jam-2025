@@ -25,4 +25,12 @@ public class ChasingEnemy : AbstractEnnemy
             rb.velocity = new Vector2(direction.x, direction.y) * FinalSpeed;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
+        }
+    }
 }

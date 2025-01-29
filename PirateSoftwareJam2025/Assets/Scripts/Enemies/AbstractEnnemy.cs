@@ -9,10 +9,15 @@ public abstract class AbstractEnnemy : MonoBehaviour
     [SerializeField] Experience ExperiencePiece;
     private Rigidbody2D RB;
     private SpriteRenderer SR;
+
     public virtual void Start()
     {
+        Debug.Log("Start");
         FinalSpeed = speed;
+
         GlobalPassiveEffects.Instance.SlowDebuffChange.AddListener(ChangeSpeed);
+
+        ChangeSpeed(GlobalPassiveEffects.Instance.EnnemiesSlowDebuffPercentage);
 
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponentInChildren<SpriteRenderer>();
@@ -20,14 +25,15 @@ public abstract class AbstractEnnemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(RB.velocity.x < 0)
+        if (RB.velocity.x < 0)
             SR.flipX = true;
         else
             SR.flipX = false;
     }
+
     public virtual void Die()
     {
-        Experience SpawnedExperiencePiece = Instantiate(ExperiencePiece,transform.position,Quaternion.identity);
+        Experience SpawnedExperiencePiece = Instantiate(ExperiencePiece, transform.position, Quaternion.identity);
         SpawnedExperiencePiece.Init(xpValue);
         if (!GlobalPassiveEffects.Instance.RollGutsChance())
             return;

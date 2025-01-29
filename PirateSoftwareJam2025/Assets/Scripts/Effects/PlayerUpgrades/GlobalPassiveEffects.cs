@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -16,7 +15,6 @@ public class GlobalPassiveEffects : MonoBehaviour
     private bool GaloreActive = false;
     private bool GetGaloreBuff { get { return GaloreActive; } }
     private float GaloreChance = -1f;
-
 
     private bool GutsActive = false;
     private bool GetGutsBuff { get { return GutsActive; } }
@@ -38,6 +36,7 @@ public class GlobalPassiveEffects : MonoBehaviour
     {
         EnnemiesSlowDebuffPercentage += amount;
         EnnemiesSlowDebuffPercentage = Mathf.Clamp01(EnnemiesSlowDebuffPercentage);
+        Debug.Log("Slow Debuff Updated: " + EnnemiesSlowDebuffPercentage); // Debug line
         SlowDebuffChange.Invoke(EnnemiesSlowDebuffPercentage);
     }
 
@@ -59,11 +58,13 @@ public class GlobalPassiveEffects : MonoBehaviour
         GutsActive = true;
         GutsChance = percent;
     }
+
     public void ActivateGalore(float percent)
     {
         GaloreActive = true;
         GaloreChance = percent;
     }
+
     public bool RollGaloreChance()
     {
         float percent = UnityEngine.Random.Range(0, 1f);

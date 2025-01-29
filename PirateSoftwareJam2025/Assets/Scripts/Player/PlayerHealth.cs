@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class PlayerHealth : MonoBehaviour, IDamagable
 {
     [SerializeField] private int MaxHealth;
-    public int GetMaxHealth {  get { return MaxHealth; } }
+    public int GetMaxHealth { get { return MaxHealth; } }
     [SerializeField] private int currentHealth;
     public int GetCurrentHealth { get { return currentHealth; } }
     [SerializeField] DamageIndicator indicator;
@@ -14,10 +14,11 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     public UnityEvent<int> OnDamaged = new UnityEvent<int>();
     public UnityEvent OnDie = new UnityEvent();
 
+    private float biteBackRange = 1.5f;
+
     private void Start()
     {
         currentHealth = MaxHealth;
-
     }
 
     public void TakeDamage(int damage)
@@ -47,7 +48,13 @@ public class PlayerHealth : MonoBehaviour, IDamagable
 
     void SpawnIndicator(int damage)
     {
-        DamageIndicator TempIndicator = Instantiate(indicator, transform.position,Quaternion.identity);
+        DamageIndicator TempIndicator = Instantiate(indicator, transform.position, Quaternion.identity);
         TempIndicator.InitDamage(damage);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, biteBackRange);
     }
 }
