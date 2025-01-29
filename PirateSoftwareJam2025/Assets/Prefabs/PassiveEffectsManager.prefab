@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4902257468721471867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5920039868703168299}
+  - component: {fileID: 1203742057020316561}
+  - component: {fileID: 4391318789949494992}
+  m_Layer: 0
+  m_Name: PassiveEffectsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5920039868703168299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902257468721471867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5860567, y: 3.9976008, z: -0.2440611}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1203742057020316561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902257468721471867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027429c14d6d407459222dc44d26b1f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnnemiesSlowDebuffPercentage: 0
+  EnnemiesPVDebuffPercentage: 0
+  PlayerDamageBuffPercentage: 0
+  PlayerDamageBuffPercentageIncrement: 0.05
+  SlowDebuffChange:
+    m_PersistentCalls:
+      m_Calls: []
+  PVDebuffChange:
+    m_PersistentCalls:
+      m_Calls: []
+  DamageBuffChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4391318789949494992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902257468721471867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f52a2ff08af3c48802e62966e9a85b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4630839448727378975, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
+  bouncingBulletPrefab: {fileID: 346457896299816142, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
+  stunBulletPrefab: {fileID: 6440011860822944578, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
+  poisonBulletPrefab: {fileID: 6133053015447802254, guid: bc8c4d170b48eaa4aa81c7d1f0680838, type: 3}
+  explodeBulletPrefab: {fileID: -572529303209502506, guid: 8fbc5e11062debb489e72bc85346853b, type: 3}

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerHealth : MonoBehaviour, IDamagable
 {
@@ -14,11 +16,16 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     public UnityEvent<int> OnDamaged = new UnityEvent<int>();
     public UnityEvent OnDie = new UnityEvent();
 
+    [SerializeField] private Volume v;
+    [SerializeField] private Vignette vg;
+
     private float biteBackRange = 1.5f;
 
     private void Start()
     {
         currentHealth = MaxHealth;
+        v = Camera.main.GetComponent<Volume>();
+        v.profile.TryGet(out vg);
     }
 
     public void TakeDamage(int damage)
@@ -27,7 +34,7 @@ public class PlayerHealth : MonoBehaviour, IDamagable
 
         OnDamagedPosition.Invoke(transform.position);
         OnDamaged.Invoke(damage);
-
+        SetRedVignetteIntensity();
         if (currentHealth <= 0)
         {
             OnDie.Invoke();
@@ -50,6 +57,15 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     {
         DamageIndicator TempIndicator = Instantiate(indicator, transform.position, Quaternion.identity);
         TempIndicator.InitDamage(damage);
+    }
+
+
+    public void SetRedVignetteIntensity()
+    {
+        float maxIntensity = 0.65f;
+        float newIntensity = (float)(MaxHealth - currentHealth) / MaxHealth * maxIntensity;
+        newIntensity = Mathf.Clamp(newIntensity, 0, maxIntensity);
+        vg.intensity.value = newIntensity;
     }
 
     private void OnDrawGizmosSelected()

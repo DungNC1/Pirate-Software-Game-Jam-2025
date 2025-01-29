@@ -31,12 +31,6 @@ public class MinionBehaviour : MonoBehaviour, IDamagable
     AbstractEnnemy closestEnnemy = null;
     public UnityEvent<MinionBehaviour> MinionDie = new UnityEvent<MinionBehaviour>();
 
-    [Header("Minion Bullets")]
-    [SerializeField] private Bullet bulletPrefab;
-    [SerializeField] private BouncingBullet bouncingBulletPrefab;
-    [SerializeField] private StunBullet stunBulletPrefab;
-    [SerializeField] private PoisonBullet poisonBulletPrefab;
-    [SerializeField] private ExplodingBullet explodeBulletPrefab;
     [SerializeField] CircleCollider2D circleCollider2D;
 
     private void Awake()
@@ -171,25 +165,8 @@ public class MinionBehaviour : MonoBehaviour, IDamagable
 
         m_AttackCDDecreasing = 0;
 
-        AbstractBullet spawnedBullet = null;
-        switch (m_BulletType)
-        {
-            case BulletType.Regular:
-                spawnedBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                break;
-            case BulletType.Bounce:
-                spawnedBullet = Instantiate(bouncingBulletPrefab, transform.position, Quaternion.identity);
-                break;
-            case BulletType.Stun:
-                spawnedBullet = Instantiate(stunBulletPrefab, transform.position, Quaternion.identity);
-                break;
-            case BulletType.Poison:
-                spawnedBullet = Instantiate(poisonBulletPrefab, transform.position, Quaternion.identity);
-                break;
-            case BulletType.Explode:
-                spawnedBullet = Instantiate(explodeBulletPrefab, transform.position, Quaternion.identity);
-                break;
-        }
+        AbstractBullet spawnedBullet = BulletGiver.Instance.GetBullet(m_BulletType);
+        spawnedBullet.transform.position = transform.position;
         Vector3 target = closestEnnemy.transform.position;
         spawnedBullet.InitParameters(target, true);
     }

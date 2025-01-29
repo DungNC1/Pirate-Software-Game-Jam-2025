@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using static PlayerStats;
 
 public abstract class AbstractEnnemy : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public abstract class AbstractEnnemy : MonoBehaviour
     [SerializeField] Experience ExperiencePiece;
     private Rigidbody2D RB;
     private SpriteRenderer SR;
+    private Collider2D collider2D;
 
     public virtual void Start()
     {
@@ -41,9 +44,11 @@ public abstract class AbstractEnnemy : MonoBehaviour
     }
 
     public virtual void Die()
-    {
+    { 
+        collider2D.enabled = false;
         Experience SpawnedExperiencePiece = Instantiate(ExperiencePiece, transform.position, Quaternion.identity);
         SpawnedExperiencePiece.Init(xpValue);
+        DropRandomBullet();
         Destroy(gameObject);
         if (!GlobalPassiveEffects.Instance.RollGutsChance())
             return;
@@ -54,5 +59,15 @@ public abstract class AbstractEnnemy : MonoBehaviour
     public void ChangeSpeed(float percentage)
     {
         FinalSpeed = speed * (1 - percentage);
+    }
+
+    void DropRandomBullet()
+    {
+        Array values = Enum.GetValues(typeof(BulletType));
+        System.Random random = new System.Random();
+        BulletType randomAmmo = (BulletType)values.GetValue(random.Next(values.Length));
+        AbstractBullet spawnedBullet = BulletGiver.Instance.GetBullet(randomAmmo);
+        spawnedBullet.InitParameters(spawnedBullet.transform.position, false);
+        spawnedBullet.transform.position = transform.position;
     }
 }

@@ -9,11 +9,6 @@ public class PlayerShooting : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Camera mainCamera;
-    [SerializeField] private Bullet bulletPrefab;
-    [SerializeField] private BouncingBullet bouncingBulletPrefab;
-    [SerializeField] private StunBullet stunBulletPrefab;
-    [SerializeField] private PoisonBullet poisonBulletPrefab;
-    [SerializeField] private ExplodingBullet explodeBulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     [HideInInspector] public float shootCooldown;
@@ -91,25 +86,8 @@ public class PlayerShooting : MonoBehaviour
             return;
 
         canFire = false;
-        AbstractBullet spawnedBullet = null;
-        switch(playerStats.bulletType) 
-        {
-            case BulletType.Regular:
-                spawnedBullet = Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-            case BulletType.Bounce:
-                spawnedBullet = Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-            case BulletType.Stun:
-                spawnedBullet = Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-            case BulletType.Poison:
-                spawnedBullet = Instantiate(poisonBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-            case BulletType.Explode:
-                spawnedBullet = Instantiate(explodeBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-        }
+        AbstractBullet spawnedBullet = BulletGiver.Instance.GetBullet(playerStats.bulletType);
+        spawnedBullet.transform.position = firePoint.transform.position;
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         spawnedBullet.InitParameters(mousePosition, false);
     }
