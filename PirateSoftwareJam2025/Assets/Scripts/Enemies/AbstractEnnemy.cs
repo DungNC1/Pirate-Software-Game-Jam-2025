@@ -45,7 +45,6 @@ public abstract class AbstractEnnemy : MonoBehaviour
 
     public virtual void Die()
     { 
-        collider2D.enabled = false;
         Experience SpawnedExperiencePiece = Instantiate(ExperiencePiece, transform.position, Quaternion.identity);
         SpawnedExperiencePiece.Init(xpValue);
         DropRandomBullet();

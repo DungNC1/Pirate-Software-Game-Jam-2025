@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6e329eefd2f8c48adef1759592b23e, type: 3}
   m_Name: Cold
   m_EditorClassIdentifier: 
-  Name: Cold
-  Description: The body is getting colder and all the other viruses are slightly
-    slower.
-  Icon: {fileID: 0}
-  DebuffAmount: 0.1
+  Name: Cold Shoulder
+  Description: The cold air causes enemies to slow down by 20%.
+  Icon: {fileID: 21300000, guid: a8e8e51c549a54081a41ddd5107fb0c0, type: 3}
+  DebuffAmount: 0

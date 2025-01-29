@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c743d086ad4cf1e46b3d7e65bc99f22c, type: 3}
   m_Name: Shoes
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Spit Shined Shoes
+  Description: Move faster by 25%
+  Icon: {fileID: 21300000, guid: 662af7bad815c4b9d935c1a1e58d0765, type: 3}
   SpeedBuff: 1

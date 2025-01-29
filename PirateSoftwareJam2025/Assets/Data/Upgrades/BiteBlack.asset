@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1034cad0945465d4c9a6f648fb07f32a, type: 3}
   m_Name: BiteBlack
   m_EditorClassIdentifier: 
-  Name: Bite back
-  Description: When damaged, deal a large melee bite attack around the player
-  Icon: {fileID: 0}
-  Range: 1.5
+  Name: Bite Back
+  Description: After getting hit, deal damage to all enemies around the player.
+  Icon: {fileID: 21300000, guid: 38989c40f51194a548d5d65c81dbd82e, type: 3}
+  Range: 1
   Damage: 1
   LayerMask:
     serializedVersion: 2

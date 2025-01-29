@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Warm
   m_EditorClassIdentifier: 
   Name: Warm Greetings
-  Description: The body is getting warmer and viruses are weaker
-  Icon: {fileID: 0}
+  Description: The hot summer fever is causing all enemies to be weaker.
+  Icon: {fileID: 21300000, guid: a7537883a9f194e0396bf0091a4e83b5, type: 3}
   DebuffAmount: 0

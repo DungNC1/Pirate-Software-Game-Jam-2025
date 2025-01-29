@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1428089786, guid: 15627e952b3bf408bbce606fb6621a5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -168,11 +168,6 @@ MonoBehaviour:
   MinionDie:
     m_PersistentCalls:
       m_Calls: []
-  bulletPrefab: {fileID: 4630839448727378975, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
-  bouncingBulletPrefab: {fileID: 346457896299816142, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
-  stunBulletPrefab: {fileID: 6440011860822944578, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
-  poisonBulletPrefab: {fileID: 6133053015447802254, guid: bc8c4d170b48eaa4aa81c7d1f0680838, type: 3}
-  explodeBulletPrefab: {fileID: -572529303209502506, guid: 8fbc5e11062debb489e72bc85346853b, type: 3}
   circleCollider2D: {fileID: 5570727156831727218}
 --- !u!50 &6944622421648536603
 Rigidbody2D:

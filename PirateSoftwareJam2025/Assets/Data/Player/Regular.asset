@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e790719ae1686004a87f38ba1b8605b7, type: 3}
   m_Name: Regular
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 7.5
   shootCooldown: 0.5
   MinionCreationCooldown: 0.25
-  bulletType: 0
+  bulletType: 2

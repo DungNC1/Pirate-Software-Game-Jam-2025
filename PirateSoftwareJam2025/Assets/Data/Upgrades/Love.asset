@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Love
   m_EditorClassIdentifier: 
   Name: Spread the Love
-  Description: Increase your health and heal a certain amount
-  Icon: {fileID: 0}
-  HealthBuff: 5
+  Description: Increases your health and heals you.
+  Icon: {fileID: 21300000, guid: 8cacef99da9044550ad76fb28cf0b6fb, type: 3}
+  HealthBuff: 0

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8854618e8a02e76428aee62aea6aef7b, type: 3}
   m_Name: Osteoporosis
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Osteoporosis
+  Description: Your bones grew more frail, but your bones are sharp enough to deal
+    more damage.
+  Icon: {fileID: 21300000, guid: c33d5adbead1b4f98a3bfd5121c9b2b8, type: 3}
   BuffPercentage: 0

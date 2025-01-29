@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6945e8d90a8b0458058bfe54053cf4, type: 3}
   m_Name: ChipGalore
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Viru Chip Galore
+  Description: Has a slight chance to give you extra Viru chips.
+  Icon: {fileID: 21300000, guid: 1d64f4b51cc3b4eb39b0613f585e14ad, type: 3}
   Percentage: 0
