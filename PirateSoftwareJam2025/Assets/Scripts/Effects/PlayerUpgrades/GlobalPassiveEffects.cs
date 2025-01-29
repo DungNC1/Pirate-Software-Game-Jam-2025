@@ -10,7 +10,7 @@ public class GlobalPassiveEffects : MonoBehaviour
     public float EnnemiesSlowDebuffPercentage = 0f;
     public float EnnemiesPVDebuffPercentage = 0f;
     public float PlayerDamageBuffPercentage = 0f;
-    public float PlayerDamageBuffPercentageIncrement = 0.05f;
+    public float PlayerDamageBuffPercentageIncrement = 0.5f;
 
     private bool GaloreActive = false;
     private bool GetGaloreBuff { get { return GaloreActive; } }
@@ -36,7 +36,6 @@ public class GlobalPassiveEffects : MonoBehaviour
     {
         EnnemiesSlowDebuffPercentage += amount;
         EnnemiesSlowDebuffPercentage = Mathf.Clamp01(EnnemiesSlowDebuffPercentage);
-        Debug.Log("Slow Debuff Updated: " + EnnemiesSlowDebuffPercentage); // Debug line
         SlowDebuffChange.Invoke(EnnemiesSlowDebuffPercentage);
     }
 

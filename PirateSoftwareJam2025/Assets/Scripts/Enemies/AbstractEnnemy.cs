@@ -35,6 +35,7 @@ public abstract class AbstractEnnemy : MonoBehaviour
     {
         Experience SpawnedExperiencePiece = Instantiate(ExperiencePiece, transform.position, Quaternion.identity);
         SpawnedExperiencePiece.Init(xpValue);
+        Destroy(gameObject);
         if (!GlobalPassiveEffects.Instance.RollGutsChance())
             return;
         SpawnedExperiencePiece = Instantiate(ExperiencePiece, transform.position, Quaternion.identity);

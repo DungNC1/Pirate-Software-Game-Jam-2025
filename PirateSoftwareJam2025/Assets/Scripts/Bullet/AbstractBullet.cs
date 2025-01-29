@@ -15,7 +15,7 @@ public abstract class AbstractBullet : MonoBehaviour
     public virtual void Awake()
     {
         TryGetComponent(out rb);
-        GlobalPassiveEffects.Instance.SlowDebuffChange.AddListener(ChangeDamage);
+        ChangeDamage(GlobalPassiveEffects.Instance.PlayerDamageBuffPercentageIncrement);
     }
 
     protected virtual void Start()
