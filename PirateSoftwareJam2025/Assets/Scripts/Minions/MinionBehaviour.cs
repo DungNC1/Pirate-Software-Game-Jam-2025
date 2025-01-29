@@ -191,6 +191,6 @@ public class MinionBehaviour : MonoBehaviour, IDamagable
                 break;
         }
         Vector3 target = closestEnnemy.transform.position;
-        spawnedBullet.InitDirection(target);
+        spawnedBullet.InitParameters(target, true);
     }
 }

@@ -42,6 +42,7 @@ public class ExplodingBullet : AbstractBullet
                 IDamagable enemyHealth = hitCollider.GetComponent<IDamagable>();
                 if (enemyHealth != null)
                 {
+                    ComputeFinalDamageDealt();
                     enemyHealth.TakeDamage((int)explosionDamage);
                 }
             }

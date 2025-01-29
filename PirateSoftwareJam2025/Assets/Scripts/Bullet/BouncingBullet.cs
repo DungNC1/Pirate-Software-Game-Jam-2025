@@ -37,6 +37,7 @@ public class BouncingBullet : AbstractBullet
         
         if(collision.gameObject.CompareTag("Enemy"))
         {
+            ComputeFinalDamageDealt();
             collision.gameObject.GetComponent<IDamagable>().TakeDamage((int)FinalDamage);
         }
     }

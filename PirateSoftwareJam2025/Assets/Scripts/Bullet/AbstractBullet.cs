@@ -11,6 +11,7 @@ public abstract class AbstractBullet : MonoBehaviour
     protected float FinalDamage = 1;
     private GameObject player;
     protected Vector3 Direction = Vector3.zero;
+    public bool MinionBullet = false;
 
     public virtual void Awake()
     {
@@ -25,9 +26,10 @@ public abstract class AbstractBullet : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    public void InitDirection(Vector3 Target)
+    public void InitParameters(Vector3 Target, bool shotByMinion)
     {
         Direction = Target - transform.position;
+        MinionBullet = shotByMinion;
     }
 
     protected void SetInactive()
@@ -56,5 +58,13 @@ public abstract class AbstractBullet : MonoBehaviour
     public void ChangeDamage(float percentage)
     {
         FinalDamage = damage * (1 + percentage);
+    }
+
+    protected void ComputeFinalDamageDealt()
+    {
+        if (!MinionBullet)
+            return;
+
+        FinalDamage /= 2;
     }
 }

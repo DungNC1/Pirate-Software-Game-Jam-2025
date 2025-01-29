@@ -63,7 +63,7 @@ public class PlayerShooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             HandleFire();
         }
@@ -85,17 +85,8 @@ public class PlayerShooting : MonoBehaviour
     private void HandleFire()
     {
         if (!canFire)
-        {
-            ShootTimer += Time.deltaTime;
-
-            if (ShootTimer > shootCooldown)
-            {
-                canFire = true;
-                ShootTimer = 0;
-            }
             return;
-        }
-
+        
         if (!CheckAndUseAmmo(1))
             return;
 
@@ -120,7 +111,7 @@ public class PlayerShooting : MonoBehaviour
                 break;
         }
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        spawnedBullet.InitDirection(mousePosition);
+        spawnedBullet.InitParameters(mousePosition, false);
     }
 
     private bool CheckAndUseAmmo(int amount)
