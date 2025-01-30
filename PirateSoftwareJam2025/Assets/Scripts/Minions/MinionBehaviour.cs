@@ -10,6 +10,7 @@ public class MinionBehaviour : MonoBehaviour, IDamagable
     BulletType m_BulletType = BulletType.Regular;
     Transform m_Player;
     Rigidbody2D m_Rigidbody2D;
+    SpriteRenderer m_SpriteRenderer;
 
     [Header("Paramaters")]
     [SerializeField] private float m_MinDistanceToPlayer = 1f;
@@ -36,7 +37,20 @@ public class MinionBehaviour : MonoBehaviour, IDamagable
     private void Awake()
     {
         TryGetComponent(out m_Rigidbody2D);
+        transform.GetChild(0).TryGetComponent(out m_SpriteRenderer);
     }
+
+    void Start()
+    {
+        StartCoroutine("EntranceFXRoutine");
+    }
+    IEnumerator EntranceFXRoutine()
+    {
+        m_SpriteRenderer.enabled = false;
+        yield return new WaitForSecondsRealtime(1);
+        m_SpriteRenderer.enabled = true;
+    }
+
     public void InitMinion(BulletType bulletType, Transform Player)
     {
         m_BulletType = bulletType;
@@ -94,7 +108,11 @@ public class MinionBehaviour : MonoBehaviour, IDamagable
     }
     public void TakeDamage(int damage)
     {
-
+        m_Health -= damage;
+         if(m_Health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,6 +28,9 @@ public class PlayerShooting : MonoBehaviour
     private bool LockMinionNumber = false;
     private float timer;
     [SerializeField] int MinionCost = 2;
+    [SerializeField] TextMeshProUGUI TMPMinionNumber;
+    [SerializeField] TextMeshProUGUI TMPAmmoNbr;
+    SpriteRenderer gunRenderer;
 
     private void Awake()
     {
@@ -39,6 +43,7 @@ public class PlayerShooting : MonoBehaviour
         PlayerInputHandler.Instance.GetScrollUpEvent.AddListener(ChangeAmmo);
         InitAmmunition();
         shootCooldown = playerStats.shootCooldown;
+        firePoint.TryGetComponent(out gunRenderer);
     }
 
     private void Update()
@@ -87,6 +92,8 @@ public class PlayerShooting : MonoBehaviour
 
         canFire = false;
         AbstractBullet spawnedBullet = BulletGiver.Instance.GetBullet(playerStats.bulletType);
+        if (spawnedBullet == null)
+            return;
         spawnedBullet.transform.position = firePoint.transform.position;
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         spawnedBullet.InitParameters(mousePosition, false);
@@ -98,6 +105,7 @@ public class PlayerShooting : MonoBehaviour
         {
             Ammunitions[playerStats.bulletType] -= amount;
             CurrentAmmo = Ammunitions[playerStats.bulletType];
+            TMPAmmoNbr.text = "x " + CurrentAmmo.ToString();
             return true;
         }
 
@@ -109,7 +117,9 @@ public class PlayerShooting : MonoBehaviour
         Ammunitions[type] += ammount;
         if (GlobalPassiveEffects.Instance.RollGaloreChance())
             Ammunitions[type] += ammount;
-        
+
+        CurrentAmmo = Ammunitions[playerStats.bulletType];
+        TMPAmmoNbr.text = "x " + CurrentAmmo.ToString();
     }
 
     void InitAmmunition()
@@ -131,6 +141,7 @@ public class PlayerShooting : MonoBehaviour
 
         CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
         AmmoSelectorUI.Instance.SetSelector(currentAmmoIndex);
+        TMPAmmoNbr.text = "x " + CurrentAmmo.ToString();
     }
 
     private void HandleCreateMinion()
@@ -161,6 +172,7 @@ public class PlayerShooting : MonoBehaviour
         SpawnedMinion.InitMinion(playerStats.bulletType, PlayerInputHandler.Instance.transform);
         MinionBehaviours.Add(SpawnedMinion);
         SpawnedMinion.MinionDie.AddListener(RemoveMinion);
+        TMPMinionNumber.text = "x " + MinionBehaviours.Count.ToString();
     }
 
     void ChangeAmmo(int change)
@@ -176,11 +188,14 @@ public class PlayerShooting : MonoBehaviour
         CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
 
         AmmoSelectorUI.Instance.SetSelector(currentAmmoIndex);
+        gunRenderer.sprite = AmmoSelectorUI.Instance.GetSelectorSprite();
+        TMPAmmoNbr.text = "x " + CurrentAmmo.ToString();
     }
 
     void RemoveMinion(MinionBehaviour Minion)
     {
         MinionBehaviours.Remove(Minion);
+        TMPMinionNumber.text = MinionBehaviours.Count.ToString();
     }
 
     public void AddMinionLimit(int amount)
@@ -219,6 +234,7 @@ public class PlayerShooting : MonoBehaviour
         CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
 
         AmmoSelectorUI.Instance.SetSelector(currentAmmoIndex);
+        TMPAmmoNbr.text = "x " + CurrentAmmo.ToString();
     }
 
 }

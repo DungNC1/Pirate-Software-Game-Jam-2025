@@ -1,33 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class AmmoSelectorUI : MonoBehaviour
 {
     public static AmmoSelectorUI Instance;
-    [SerializeField] Transform AmmoUIHolder;
-    Transform[] Ammos;
-    [SerializeField] RectTransform Selector;
+    Image WeaponImage;
+    [SerializeField] List<Sprite> WeaponSprites = new List<Sprite>();
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
             Destroy(this);
         Instance = this;
-
-        Ammos = new RectTransform[AmmoUIHolder.childCount];
-
-        for(int i = 0; i < AmmoUIHolder.childCount; i++)
-        {
-            Ammos[i] = AmmoUIHolder.GetChild(i);
-        }
+        TryGetComponent(out WeaponImage);
     }
 
     public void SetSelector(int index)
     {
-        Selector.position = Ammos[index].position;
+        WeaponImage.sprite = WeaponSprites[index];
+    }
+
+    public Sprite GetSelectorSprite()
+    {
+        return WeaponImage.sprite;
     }
 }
