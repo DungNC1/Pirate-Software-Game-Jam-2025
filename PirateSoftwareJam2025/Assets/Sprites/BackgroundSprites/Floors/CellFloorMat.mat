@@ -79,7 +79,7 @@ Material:
     - _IsBooger: 0
     - _IsCell: 0
     - _IsFlesh: 1
-    - _isMoreIntense: 1
+    - _isMoreIntense: 0
     m_Colors:
     - _TileSize: {r: 0.04, g: 0.07, b: 0, a: 0}
   m_BuildTextureStacks: []
