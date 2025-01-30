@@ -16,3 +16,4 @@ MonoBehaviour:
   Description: Keep a secret clone inside of you. When you die, your clone will take
     your place.
   Icon: {fileID: 21300000, guid: ad68c00f8020d4b719257acca79c665d, type: 3}
+  playerPrefab: {fileID: 3069619169956562714, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
