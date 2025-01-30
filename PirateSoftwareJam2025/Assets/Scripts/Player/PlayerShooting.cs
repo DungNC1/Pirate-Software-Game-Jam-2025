@@ -9,10 +9,6 @@ public class PlayerShooting : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Camera mainCamera;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject bouncingBulletPrefab;
-    [SerializeField] private GameObject stunBulletPrefab;
-    [SerializeField] private GameObject poisonBulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     [HideInInspector] public float shootCooldown;
@@ -30,6 +26,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private int MaxMinion = 2;
     private bool LockMinionNumber = false;
     private float timer;
+    [SerializeField] int MinionCost = 2;
 
     private void Awake()
     {
@@ -61,7 +58,7 @@ public class PlayerShooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             HandleFire();
         }
@@ -83,43 +80,23 @@ public class PlayerShooting : MonoBehaviour
     private void HandleFire()
     {
         if (!canFire)
-        {
-            ShootTimer += Time.deltaTime;
-
-            if (ShootTimer > shootCooldown)
-            {
-                canFire = true;
-                ShootTimer = 0;
-            }
             return;
-        }
-
-        if (!CheckAndUseAmmo())
+        
+        if (!CheckAndUseAmmo(1))
             return;
 
         canFire = false;
-        switch(playerStats.bulletType) 
-        {
-            case BulletType.Regular:
-                Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-            case BulletType.Bounce:
-                Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-            case BulletType.Stun:
-                Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-            case BulletType.Poison:
-                Instantiate(poisonBulletPrefab, firePoint.transform.position, Quaternion.identity);
-                break;
-        }
+        AbstractBullet spawnedBullet = BulletGiver.Instance.GetBullet(playerStats.bulletType);
+        spawnedBullet.transform.position = firePoint.transform.position;
+        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        spawnedBullet.InitParameters(mousePosition, false);
     }
 
-    private bool CheckAndUseAmmo()
+    private bool CheckAndUseAmmo(int amount)
     {
-        if (Ammunitions[playerStats.bulletType] > 0)
+        if (Ammunitions[playerStats.bulletType] >= amount)
         {
-            Ammunitions[playerStats.bulletType]--;
+            Ammunitions[playerStats.bulletType] -= amount;
             CurrentAmmo = Ammunitions[playerStats.bulletType];
             return true;
         }
@@ -176,7 +153,7 @@ public class PlayerShooting : MonoBehaviour
         if (MinionBehaviours.Count >= MaxMinion)
             return;
 
-        if (!CheckAndUseAmmo())
+        if (!CheckAndUseAmmo(MinionCost))
             return;
 
         canSpawnMinion = false;
@@ -208,8 +185,6 @@ public class PlayerShooting : MonoBehaviour
 
     public void AddMinionLimit(int amount)
     {
-        if (LockMinionNumber)
-            return;
         MaxMinion += amount;
     }
 
@@ -225,20 +200,25 @@ public class PlayerShooting : MonoBehaviour
 
     public void ConvertAllAmmoToOne()
     {
-        int AllAmmo = 0;
-        foreach (KeyValuePair<BulletType, int> Bullet in Ammunitions)
+        int allAmmo = 0;
+        List<BulletType> keys = new List<BulletType>(Ammunitions.Keys); 
+
+        foreach (BulletType key in keys)
         {
-            AllAmmo += Bullet.Value;
-            Ammunitions[Bullet.Key] = 0;
+            allAmmo += Ammunitions[key];
+            Ammunitions[key] = 0;
         }
 
         Array values = Enum.GetValues(typeof(BulletType));
         System.Random random = new System.Random();
         BulletType randomAmmo = (BulletType)values.GetValue(random.Next(values.Length));
-        Ammunitions[randomAmmo] = AllAmmo;
+        Ammunitions[randomAmmo] = allAmmo;
 
-        currentAmmoIndex = (int)randomAmmo;
+        currentAmmoIndex = bulletTypesCycleTracker.IndexOf(randomAmmo);
         playerStats.bulletType = randomAmmo;
         CurrentAmmo = Ammunitions[bulletTypesCycleTracker[currentAmmoIndex]];
+
+        AmmoSelectorUI.Instance.SetSelector(currentAmmoIndex);
     }
+
 }

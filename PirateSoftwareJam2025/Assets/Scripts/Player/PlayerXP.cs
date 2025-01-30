@@ -8,9 +8,12 @@ public class PlayerXP : MonoBehaviour
     public static PlayerXP instance;
     [SerializeField] AnimationCurve XPRequiredPerLevel;
     [SerializeField] int currentXP = 0;
+    public int GetcurrentXP { get { return currentXP; } }
     [SerializeField] int currentLevel = 1;
     [SerializeField] int XPToNextLevel = 0;
+    public int GetXPToNextLevel {  get { return XPToNextLevel; } }
     public UnityEvent LevelGained = new UnityEvent();
+    public UnityEvent<int> XPGained = new UnityEvent<int>();
 
     private void Awake()
     {
@@ -22,9 +25,18 @@ public class PlayerXP : MonoBehaviour
         XPToNextLevel = (int)XPRequiredPerLevel.Evaluate(currentLevel);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GainXP(3);
+        }
+    }
+
     public void GainXP(int xp)
     {
         currentXP += xp;
+        XPGained.Invoke(xp);
         CheckXPCount();
     }
 

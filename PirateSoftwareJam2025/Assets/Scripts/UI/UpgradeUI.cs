@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpgradeUI : MonoBehaviour
 {
-    public string Name;
-    public string Description;
-    public Sprite Icon;
+    public TextMeshProUGUI name;
+    public TextMeshProUGUI description;
+    public Image icon;
     [SerializeField] Button button;
     [SerializeField] Upgrade Upgrade;
     [SerializeField] UpgradeMenu Menu;
@@ -15,9 +16,9 @@ public class UpgradeUI : MonoBehaviour
     public void InitUI(Upgrade upgrade)
     {
         Upgrade = upgrade;
-        Name = upgrade.Name;
-        Description = upgrade.Description;
-        Icon = upgrade.Icon;
+        name.text = upgrade.Name;
+        description.text = upgrade.Description;
+        icon.sprite = upgrade.Icon;
         button.onClick.AddListener(Upgrade.ApplyUpgrade);
         int index = transform.GetSiblingIndex();
         button.onClick.AddListener(() => Menu.OnChooseUpgrade(Upgrade));

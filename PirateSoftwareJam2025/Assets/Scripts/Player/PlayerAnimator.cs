@@ -27,7 +27,7 @@ public class PlayerAnimator : MonoBehaviour
         transform.parent.GetComponent<PlayerHealth>().OnDie.AddListener(DieAnimation); 
     }
 
-    void HitAnimation()
+    void HitAnimation(int value)
     {
         StartCoroutine("HitCoroutine");
     }
@@ -75,5 +75,10 @@ public class PlayerAnimator : MonoBehaviour
             animator.Play("VIRU_IDLE");
         }
 
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(transform.parent.gameObject);
     }
 }

@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616c1e66fe47f9f45beaef1d089de8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!61 &3445073584744823211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff97c8a3a422b2418c5cb95214d4435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 4
   xpValue: 1
   ExperiencePiece: {fileID: 4809719966713682007, guid: 97a4823b9d79a4e48bf63cfed2a54753, type: 3}
 --- !u!50 &7256053535534482851

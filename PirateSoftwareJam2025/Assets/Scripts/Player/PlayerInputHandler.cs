@@ -9,7 +9,6 @@ public sealed class PlayerInputHandler : MonoBehaviour
     public static PlayerInputHandler Instance;
     PlayerInputAction playerInputAction;
 
-
     Vector2 m_MoveInput = Vector2.zero;
     public Vector2 GetMoveInput { get { return m_MoveInput; } }
 
@@ -26,7 +25,10 @@ public sealed class PlayerInputHandler : MonoBehaviour
     public void Awake()
     {
         if (Instance != null && Instance != this)
-            Destroy(this);
+        {
+            Instance.UnbindInputs();
+            Destroy(Instance.gameObject);
+        }
         Instance = this;
 
         if (ScrollUp == null)
@@ -37,7 +39,9 @@ public sealed class PlayerInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInputAction = new PlayerInputAction();
+        if (playerInputAction == null)
+            playerInputAction = new PlayerInputAction();
+
         playerInputAction.Enable();
         BindInputs();
     }
@@ -94,7 +98,7 @@ public sealed class PlayerInputHandler : MonoBehaviour
 
         if (m_AmmoChangeInput < 0.5f)
             ScrollUp.Invoke(1);
-        else if(m_AmmoChangeInput > 0.5f)
+        else if (m_AmmoChangeInput > 0.5f)
             ScrollDown.Invoke(-1);
     }
 }

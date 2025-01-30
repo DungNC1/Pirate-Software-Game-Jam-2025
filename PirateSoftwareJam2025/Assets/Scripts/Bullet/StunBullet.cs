@@ -18,10 +18,8 @@ public class StunBullet : AbstractBullet
 
     private void Start()
     {
-        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePosition - transform.position;
         Vector3 rotation = transform.position - mousePosition;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+        rb.velocity = new Vector2(Direction.x, Direction.y).normalized * force;
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
@@ -31,6 +29,7 @@ public class StunBullet : AbstractBullet
         if (collision.gameObject.CompareTag("Enemy"))
         {
             SlowEnemy slowEnemy = collision.gameObject.GetComponent<SlowEnemy>();
+            ComputeFinalDamageDealt();
             collision.gameObject.GetComponent<IDamagable>().TakeDamage((int)FinalDamage);
 
             if (slowEnemy != null)

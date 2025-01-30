@@ -17,10 +17,8 @@ public class Bullet : AbstractBullet
 
     private void Start()
     {
-        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePosition - transform.position;
         Vector3 rotation = transform.position - mousePosition;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+        rb.velocity = new Vector2(Direction.x, Direction.y).normalized * force;
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
@@ -29,6 +27,7 @@ public class Bullet : AbstractBullet
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
+            ComputeFinalDamageDealt();
             collision.gameObject.GetComponent<IDamagable>().TakeDamage((int)FinalDamage);
         }
 

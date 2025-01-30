@@ -10,12 +10,11 @@ public class GlobalPassiveEffects : MonoBehaviour
     public float EnnemiesSlowDebuffPercentage = 0f;
     public float EnnemiesPVDebuffPercentage = 0f;
     public float PlayerDamageBuffPercentage = 0f;
-    public float PlayerDamageBuffPercentageIncrement = 0.05f;
+    public float PlayerDamageBuffPercentageIncrement = 0.5f;
 
     private bool GaloreActive = false;
     private bool GetGaloreBuff { get { return GaloreActive; } }
     private float GaloreChance = -1f;
-
 
     private bool GutsActive = false;
     private bool GetGutsBuff { get { return GutsActive; } }
@@ -47,7 +46,7 @@ public class GlobalPassiveEffects : MonoBehaviour
         PVDebuffChange.Invoke(EnnemiesPVDebuffPercentage);
     }
 
-    public void UpdateDamageBuff()
+    public void UpdateDamageBuff(int value)
     {
         PlayerDamageBuffPercentage += PlayerDamageBuffPercentageIncrement;
         DamageBuffChange.Invoke(PlayerDamageBuffPercentage);
@@ -58,11 +57,13 @@ public class GlobalPassiveEffects : MonoBehaviour
         GutsActive = true;
         GutsChance = percent;
     }
+
     public void ActivateGalore(float percent)
     {
         GaloreActive = true;
         GaloreChance = percent;
     }
+
     public bool RollGaloreChance()
     {
         float percent = UnityEngine.Random.Range(0, 1f);
