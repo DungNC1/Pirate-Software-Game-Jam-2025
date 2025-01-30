@@ -26,7 +26,6 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         if(currentHealth <= 0)
         {
             MainScriptRef.Die();
-            Destroy(gameObject);
         }
     }
 

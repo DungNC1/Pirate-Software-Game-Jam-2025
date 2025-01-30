@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Phlegm : MonoBehaviour
 {
-    [SerializeField] private int damage = 1;
+    [SerializeField] private int damage = 20;
+    [SerializeField] private float slowDuration = 2f;
+    [SerializeField] private float slowFactor = 0.5f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -18,7 +20,7 @@ public class Phlegm : MonoBehaviour
                 PlayerShooting playerShooting = collision.gameObject.GetComponentInChildren<PlayerShooting>();
                 if (!playerMovement.isSlowed)
                 {
-                    StartCoroutine(playerMovement.ApplySlowEffect(playerShooting));
+                    StartCoroutine(ApplySlowEffect(playerMovement, playerShooting));
                 }
             }
         }
@@ -26,4 +28,21 @@ public class Phlegm : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private IEnumerator ApplySlowEffect(PlayerMovement playerMovement, PlayerShooting playerShooting)
+    {
+        playerMovement.isSlowed = true;
+
+        float originalSpeed = playerMovement.speed;
+        float originalShootCooldown = playerShooting.shootCooldown;
+
+        playerMovement.speed *= slowFactor;
+        playerShooting.shootCooldown /= slowFactor;
+
+        yield return new WaitForSeconds(slowDuration);
+
+        playerMovement.speed = originalSpeed;
+        playerShooting.shootCooldown = originalShootCooldown;
+
+        playerMovement.isSlowed = false;
+    }
 }
