@@ -12,6 +12,7 @@ public abstract class AbstractBullet : MonoBehaviour
     private GameObject player;
     protected Vector3 Direction = Vector3.zero;
     public bool MinionBullet = false;
+    [SerializeField] DamageIndicator indicator;
 
     public virtual void Awake()
     {
@@ -66,5 +67,12 @@ public abstract class AbstractBullet : MonoBehaviour
             return;
 
         FinalDamage /= 2;
+        FinalDamage = Mathf.Clamp(FinalDamage, 1, 99);
+    }
+
+    protected void CreateIndicator(int value)
+    {
+        DamageIndicator tempIndicator = Instantiate(indicator, transform.position, transform.rotation);
+        tempIndicator.InitDamage(value);
     }
 }

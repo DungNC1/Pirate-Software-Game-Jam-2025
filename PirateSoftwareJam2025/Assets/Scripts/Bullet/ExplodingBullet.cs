@@ -43,6 +43,7 @@ public class ExplodingBullet : AbstractBullet
                 if (enemyHealth != null)
                 {
                     ComputeFinalDamageDealt();
+                    CreateIndicator((int)FinalDamage);
                     enemyHealth.TakeDamage((int)explosionDamage);
                 }
             }

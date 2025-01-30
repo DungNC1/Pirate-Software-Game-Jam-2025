@@ -28,6 +28,7 @@ public class Bullet : AbstractBullet
         if(collision.gameObject.CompareTag("Enemy"))
         {
             ComputeFinalDamageDealt();
+            CreateIndicator((int)FinalDamage);
             collision.gameObject.GetComponent<IDamagable>().TakeDamage((int)FinalDamage);
         }
 

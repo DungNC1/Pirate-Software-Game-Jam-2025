@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BouncingBullet : AbstractBullet
 {
@@ -38,6 +39,7 @@ public class BouncingBullet : AbstractBullet
         if(collision.gameObject.CompareTag("Enemy"))
         {
             ComputeFinalDamageDealt();
+            CreateIndicator((int)FinalDamage);
             collision.gameObject.GetComponent<IDamagable>().TakeDamage((int)FinalDamage);
         }
     }

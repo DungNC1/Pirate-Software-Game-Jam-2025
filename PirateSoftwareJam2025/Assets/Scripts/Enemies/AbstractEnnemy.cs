@@ -16,6 +16,7 @@ public abstract class AbstractEnnemy : MonoBehaviour
     public virtual void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+        collider2D = GetComponent<Collider2D>();
         SR = GetComponentInChildren<SpriteRenderer>();
 
         if (RB == null)
@@ -44,7 +45,7 @@ public abstract class AbstractEnnemy : MonoBehaviour
     }
 
     public virtual void Die()
-    { 
+    {
         Experience SpawnedExperiencePiece = Instantiate(ExperiencePiece, transform.position, Quaternion.identity);
         SpawnedExperiencePiece.Init(xpValue);
         DropRandomBullet();
@@ -62,6 +63,7 @@ public abstract class AbstractEnnemy : MonoBehaviour
 
     void DropRandomBullet()
     {
+        collider2D.enabled = false;
         Array values = Enum.GetValues(typeof(BulletType));
         System.Random random = new System.Random();
         BulletType randomAmmo = (BulletType)values.GetValue(random.Next(values.Length));

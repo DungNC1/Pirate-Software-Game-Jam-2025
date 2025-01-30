@@ -248,6 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: 2
   damage: 1
+  MinionBullet: 0
+  indicator: {fileID: 8322613381256445568, guid: 7bee38ce2f486ff4eb7a973b06eb4d04, type: 3}
   force: 10
   maxBounces: 5
 --- !u!50 &5205337185735403486

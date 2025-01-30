@@ -43,6 +43,7 @@ public class PoisonBullet : AbstractBullet
         while (elapsedTime < poisonDuration)
         {
             enemyHealth.TakeDamage((int)poisonDamage);
+            CreateIndicator((int)poisonDamage);
             elapsedTime += poisonInterval;
             yield return new WaitForSeconds(poisonInterval);
         }

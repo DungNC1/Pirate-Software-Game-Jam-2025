@@ -30,6 +30,7 @@ public class StunBullet : AbstractBullet
         {
             SlowEnemy slowEnemy = collision.gameObject.GetComponent<SlowEnemy>();
             ComputeFinalDamageDealt();
+            CreateIndicator((int)FinalDamage);
             collision.gameObject.GetComponent<IDamagable>().TakeDamage((int)FinalDamage);
 
             if (slowEnemy != null)
