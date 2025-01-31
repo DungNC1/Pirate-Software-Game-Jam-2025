@@ -5,6 +5,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+    [Header("Timer")]
     [SerializeField] private float gameDuration = 1f;
     [SerializeField] private GameObject bossPrefab;
     [SerializeField] private Transform bossSpawnLocation;
@@ -17,6 +18,10 @@ public class Timer : MonoBehaviour
     [SerializeField] private GameObject rightWall;
     [SerializeField] private float shrinkDuration = 10f;
     [SerializeField] private float finalSize = 1f;
+
+    [Header("Disable Objects")]
+    [SerializeField] private GameObject upgrade;
+    [SerializeField] private GameObject enemySpawner;
 
     private float timer;
     private Vector3 initialTopPosition;

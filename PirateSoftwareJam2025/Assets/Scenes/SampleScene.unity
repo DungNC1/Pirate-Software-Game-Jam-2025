@@ -374,6 +374,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &413247423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4848419018700634398, guid: 2c8ae998fb6a2674b80d6dc35a3b6759, type: 3}
+  m_PrefabInstance: {fileID: 1781687344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &498124789 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 191056335651226030, guid: 2c8ae998fb6a2674b80d6dc35a3b6759, type: 3}
@@ -2557,6 +2562,8 @@ MonoBehaviour:
   rightWall: {fileID: 1104139865}
   shrinkDuration: 10
   finalSize: 14
+  upgrade: {fileID: 413247423}
+  enemySpawner: {fileID: 1710321573}
 --- !u!4 &1889412536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5920039868703168299, guid: 8a6f8ea2ea2ddc84090f06285408d65c, type: 3}
