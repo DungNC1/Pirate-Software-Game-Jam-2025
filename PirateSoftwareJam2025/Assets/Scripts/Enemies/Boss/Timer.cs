@@ -5,7 +5,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private float gameDuration = 600f;
+    [SerializeField] private float gameDuration = 1f;
     [SerializeField] private GameObject bossPrefab;
     [SerializeField] private Transform bossSpawnLocation;
     [SerializeField] private TextMeshProUGUI timerText;

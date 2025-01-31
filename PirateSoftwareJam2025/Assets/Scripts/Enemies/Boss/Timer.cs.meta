@@ -3,7 +3,14 @@ guid: 018630541edf0be4aacbfb778932eeb9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bossPrefab: {fileID: 4856186362457354908, guid: bea20a77329be184588cf74ac730aae2, type: 3}
+  - bossSpawnLocation: {instanceID: 0}
+  - timerText: {instanceID: 0}
+  - topWall: {instanceID: 0}
+  - bottomWall: {instanceID: 0}
+  - leftWall: {instanceID: 0}
+  - rightWall: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

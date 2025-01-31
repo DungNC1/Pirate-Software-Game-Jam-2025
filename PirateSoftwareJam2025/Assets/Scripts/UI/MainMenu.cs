@@ -50,6 +50,6 @@ public class MainMenu : MonoBehaviour
         color.a = endAlpha;
         img.color = color;
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("SampleScene");
     }
 }

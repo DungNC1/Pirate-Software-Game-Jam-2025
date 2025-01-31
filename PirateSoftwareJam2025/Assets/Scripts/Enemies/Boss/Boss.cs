@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Boss : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
@@ -126,5 +126,10 @@ public class Boss : MonoBehaviour
         Vector2 pos = new Vector2(x, y);
 
         return pos;
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.LoadScene("Cutscene");
     }
 }
