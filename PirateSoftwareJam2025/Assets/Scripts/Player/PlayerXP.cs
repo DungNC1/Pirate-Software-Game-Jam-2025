@@ -25,14 +25,6 @@ public class PlayerXP : MonoBehaviour
         XPToNextLevel = (int)XPRequiredPerLevel.Evaluate(currentLevel);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GainXP(3);
-        }
-    }
-
     public void GainXP(int xp)
     {
         currentXP += xp;

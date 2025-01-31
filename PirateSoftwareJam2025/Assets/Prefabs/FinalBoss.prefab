@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2802407559894238169}
   - component: {fileID: 49719560148302502}
-  - component: {fileID: 6796973439785251137}
   m_Layer: 0
   m_Name: DeathrusSprite
   m_TagString: Untagged
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 333727175, guid: 1c42a80e2a0b04462841f6959e3c8882, type: 3}
+  m_Sprite: {fileID: 1723849170, guid: 1c42a80e2a0b04462841f6959e3c8882, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,27 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6796973439785251137
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2980073157441494930}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec495abf1b4054ac49e121addd30d6ae, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4856186362457354908
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,9 +97,10 @@ GameObject:
   - component: {fileID: 3445073584744823211}
   - component: {fileID: 7256053535534482851}
   - component: {fileID: 570696659148609271}
-  - component: {fileID: 7746269641924021994}
+  - component: {fileID: 7214558552466409973}
+  - component: {fileID: 3995900404581507771}
   m_Layer: 0
-  m_Name: Deathrus
+  m_Name: FinalBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616c1e66fe47f9f45beaef1d089de8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
+  health: 50
 --- !u!61 &3445073584744823211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,7 +188,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4856186362457354908}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -244,7 +223,7 @@ MonoBehaviour:
   slowDownFactor: 0.5
   slowDownDuration: 2
   isSlowed: 0
---- !u!114 &7746269641924021994
+--- !u!114 &7214558552466409973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,12 +232,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 4856186362457354908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a307ade5ca805147bdd76e7e6a40288, type: 3}
+  m_Script: {fileID: 11500000, guid: afb12e298f6b4b249a7597630940cdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  xpValue: 15
-  ExperiencePiece: {fileID: 4809719966713682007, guid: 97a4823b9d79a4e48bf63cfed2a54753, type: 3}
-  damage: 5
-  attackRange: 2.5
-  attackCooldown: 3
+  bulletPrefab: {fileID: 2227435098529890531, guid: 12b7476185713fe43b8cb96708aac1c1, type: 3}
+  bulletMoveSpeed: 0.1
+  burstCount: 1
+  projectilesPerBurst: 1
+  angleSpread: 0
+  startingDistance: 0.1
+  timeBetweenBursts: 0.1
+  restTime: 1
+  stagger: 0
+  oscillate: 0
+--- !u!114 &3995900404581507771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856186362457354908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9b1c3cb7777ee498f09dc402078f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 2227435098529890531, guid: 12b7476185713fe43b8cb96708aac1c1, type: 3}
+  fireRate: 5
+  minRandomMoveTime: 1
+  maxRandomMoveTime: 5
+  minionPrefab: {fileID: 4856186362457354908, guid: 68bd8f5327edec349b20a603e7faf6fe, type: 3}
+  minionSpawnAmount: 3
+  speed: 3
+  rotationModifier: 0

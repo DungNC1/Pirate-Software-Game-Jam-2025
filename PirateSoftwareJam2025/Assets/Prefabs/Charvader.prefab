@@ -204,10 +204,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  xpValue: 1
+  xpValue: 12
   ExperiencePiece: {fileID: 4809719966713682007, guid: 97a4823b9d79a4e48bf63cfed2a54753, type: 3}
   chargeSpeed: 13
-  detectionRange: 7
+  detectionRange: 9
   damage: 2
   chargeCooldown: 3
 --- !u!1 &3741505250501147803

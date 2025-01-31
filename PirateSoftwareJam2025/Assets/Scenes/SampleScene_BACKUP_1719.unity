@@ -1567,7 +1567,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2300, y: 1080}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1493789533
 MonoBehaviour:
@@ -2547,7 +2547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018630541edf0be4aacbfb778932eeb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDuration: 600
+  gameDuration: 10
   bossPrefab: {fileID: 4856186362457354908, guid: bea20a77329be184588cf74ac730aae2, type: 3}
   bossSpawnLocation: {fileID: 15224229}
   timerText: {fileID: 900277551}
@@ -2938,6 +2938,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 6869628459145368676, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
       propertyPath: TMPAmmoNbr
       value: 
@@ -2946,6 +2947,20 @@ PrefabInstance:
       propertyPath: TMPMinionNumber
       value: 
       objectReference: {fileID: 879718639}
+=======
+    - target: {fileID: 5635808925731107533, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869628459145368676, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
+      propertyPath: poisonBulletPrefab
+      value: 
+      objectReference: {fileID: 2227435098529890531, guid: bc8c4d170b48eaa4aa81c7d1f0680838, type: 3}
+    - target: {fileID: 8094227844867159312, guid: 4be106c4aaa96034baf08bf25fcdcdb0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -10,6 +10,10 @@ public class PlayerShooting : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Camera mainCamera;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject bouncingBulletPrefab;
+    [SerializeField] private GameObject poisonBulletPrefab;
+    [SerializeField] private GameObject stunBulletPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform firePoint;
     [HideInInspector] public float shootCooldown;
@@ -97,6 +101,31 @@ public class PlayerShooting : MonoBehaviour
         spawnedBullet.transform.position = firePoint.transform.position;
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         spawnedBullet.InitParameters(mousePosition, false);
+
+        switch(playerStats.bulletType) 
+        {
+            case BulletType.Regular:
+                Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
+                break;
+            case BulletType.Bounce:
+                Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                break;
+            case BulletType.Stun:
+                Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                break;
+            case BulletType.Poison:
+                Instantiate(poisonBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                break;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (mainCamera != null && closestEnemy != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, closestEnemy.transform.position);
+        }
     }
 
     private bool CheckAndUseAmmo(int amount)

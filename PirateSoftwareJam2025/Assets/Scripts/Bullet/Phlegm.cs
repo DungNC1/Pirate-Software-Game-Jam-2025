@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Phlegm : MonoBehaviour
 {
-    [SerializeField] private int damage = 20;
+    [SerializeField] private int damage = 1;
+    [SerializeField] private bool isPhlegnnon = true;
     [SerializeField] private float slowDuration = 2f;
     [SerializeField] private float slowFactor = 0.5f;
 
@@ -18,11 +19,16 @@ public class Phlegm : MonoBehaviour
                 playerHealth.TakeDamage(damage);
                 PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
                 PlayerShooting playerShooting = collision.gameObject.GetComponentInChildren<PlayerShooting>();
-                if (!playerMovement.isSlowed)
+                if (!playerMovement.isSlowed && isPhlegnnon)
                 {
                     StartCoroutine(ApplySlowEffect(playerMovement, playerShooting));
                 }
             }
+        }
+
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            return;
         }
 
         Destroy(gameObject);

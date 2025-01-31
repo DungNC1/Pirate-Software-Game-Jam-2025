@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 6944622421648536603}
   - component: {fileID: 5570727156831727218}
   - component: {fileID: 6455796533929018098}
+  - component: {fileID: 562847890312595507}
   m_Layer: 6
   m_Name: DefaultMinion
   m_TagString: Player
@@ -794,6 +795,32 @@ CircleCollider2D:
   m_Offset: {x: 0.022416115, y: -0.107596755}
   serializedVersion: 2
   m_Radius: 0.39551687
+--- !u!114 &562847890312595507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229463579690927380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1724a806c3d927a49966c946d9a4e38f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 10
+  currentHealth: 0
+  indicator: {fileID: 0}
+  OnDamagedPosition:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+  v: {fileID: 0}
+  vg: {fileID: 0}
 --- !u!1 &7984419277321416218
 GameObject:
   m_ObjectHideFlags: 0
