@@ -5,11 +5,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using static PlayerStats;
+using UnityEngine.Audio;
 
 public class PlayerShooting : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Camera mainCamera;
+    [Header("Shooting")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject bouncingBulletPrefab;
     [SerializeField] private GameObject poisonBulletPrefab;
@@ -24,6 +26,8 @@ public class PlayerShooting : MonoBehaviour
     List<BulletType> bulletTypesCycleTracker = new List<BulletType>();
     [SerializeField] int CurrentAmmo = 0;
     int currentAmmoIndex = 0;
+
+    [Header("Minions")]
     [SerializeField] private bool canSpawnMinion = true;
     [SerializeField] private float SpawnTimer;
     [SerializeField] MinionBehaviour Minion;
@@ -32,9 +36,17 @@ public class PlayerShooting : MonoBehaviour
     private bool LockMinionNumber = false;
     private float timer;
     [SerializeField] int MinionCost = 2;
+
+    [Header("UI")]
     [SerializeField] TextMeshProUGUI TMPMinionNumber;
     [SerializeField] TextMeshProUGUI TMPAmmoNbr;
     SpriteRenderer gunRenderer;
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip normalBullet;
+    [SerializeField] private AudioClip explodingBullet;
+    [SerializeField] private AudioClip bouncingBullet;
+    [SerializeField] private AudioClip poisonBullet;
 
     private void Awake()
     {
@@ -106,15 +118,19 @@ public class PlayerShooting : MonoBehaviour
         {
             case BulletType.Regular:
                 Instantiate(bulletPrefab, firePoint.transform.position, Quaternion.identity);
+                SFXManager.instance.PlaySFX(normalBullet);
                 break;
             case BulletType.Bounce:
                 Instantiate(bouncingBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                SFXManager.instance.PlaySFX(bouncingBullet);
                 break;
             case BulletType.Stun:
                 Instantiate(stunBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                SFXManager.instance.PlaySFX(explodingBullet);
                 break;
             case BulletType.Poison:
                 Instantiate(poisonBulletPrefab, firePoint.transform.position, Quaternion.identity);
+                SFXManager.instance.PlaySFX(poisonBullet);
                 break;
         }
     }
@@ -157,14 +173,12 @@ public class PlayerShooting : MonoBehaviour
         Ammunitions.Add(BulletType.Bounce, 10);
         Ammunitions.Add(BulletType.Poison, 10);
         Ammunitions.Add(BulletType.Explode, 10);
-        Ammunitions.Add(BulletType.Melee, 10);
         Ammunitions.Add(BulletType.Stun, 10);
 
         bulletTypesCycleTracker.Add(BulletType.Regular);
         bulletTypesCycleTracker.Add(BulletType.Bounce);
         bulletTypesCycleTracker.Add(BulletType.Poison);
         bulletTypesCycleTracker.Add(BulletType.Explode);
-        bulletTypesCycleTracker.Add(BulletType.Melee);
         bulletTypesCycleTracker.Add(BulletType.Stun);
 
 

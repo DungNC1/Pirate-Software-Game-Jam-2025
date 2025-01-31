@@ -211,6 +211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770b55b836543b3439d0c33a941227f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5817108640050918912, guid: d743d8b22123d2a439383f733b66bae3, type: 3}
+  bouncingBulletPrefab: {fileID: 2925804891647512289, guid: d872a289dbcd00940b29c16b6f4e5f93, type: 3}
+  poisonBulletPrefab: {fileID: 2227435098529890531, guid: bc8c4d170b48eaa4aa81c7d1f0680838, type: 3}
+  stunBulletPrefab: {fileID: 2227435098529890531, guid: 341944f2b6e60764988b8c47e09c8e72, type: 3}
   playerStats: {fileID: 11400000, guid: e4b46a9a46cacaa41b355a5390af233c, type: 2}
   firePoint: {fileID: 5635808925731107533}
   shootCooldown: 0
@@ -222,6 +226,10 @@ MonoBehaviour:
   MinionCost: 2
   TMPMinionNumber: {fileID: 0}
   TMPAmmoNbr: {fileID: 0}
+  normalBullet: {fileID: 8300000, guid: c2ae003b6b383b24c9f468b1881031d9, type: 3}
+  explodingBullet: {fileID: 8300000, guid: c93298d0e06d93444b54357e9f513763, type: 3}
+  bouncingBullet: {fileID: 8300000, guid: 7f69f063713be074ea972deee487bd9b, type: 3}
+  poisonBullet: {fileID: 8300000, guid: b794a19b140784c47bf6646b5cd1f199, type: 3}
 --- !u!1 &1558698485950650302
 GameObject:
   m_ObjectHideFlags: 0
